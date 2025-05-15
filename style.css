@@ -1,0 +1,498 @@
+/* общие стили */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #949494;
+    background-size: cover;
+}
+/* Стили шапки */
+header {
+    background-color: #000000;
+    color: #fff;
+    padding: 10px 0;
+    /* Фиксируем header */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100; /*  Важно, чтобы перекрывать другие элементы */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Небольшая тень для визуального эффекта */
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+/* Стили лого */
+.logo img {
+    max-width: 200px;
+    height: auto;
+}
+
+/* Стили навигации*/
+header nav a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 1.2em; /* Увеличиваем размер шрифта */
+    position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+header nav a:hover {
+    color: #5c1212; /* Изменение цвета при наведении */
+    transform: translateY(-3px); /* Поднимаем ссылку немного вверх */
+}
+header nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px; /* Положение подчеркивания */
+    width: 100%;
+    height: 2px; /* Толщина подчеркивания */
+    background-color: #5c1212; /* Цвет подчеркивания */
+    transform: scaleX(0);  /* Подчеркивание невидимо по умолчанию */
+    transform-origin: right; /* Анимация начинается справа */
+    transition: transform 0.3s ease;
+}
+header nav a:hover::after {
+    transform: scaleX(1);  /* Показываем подчеркивание при наведении */
+    transform-origin: left; /* Анимация заканчивается слева */
+}
+
+/* Стили для баннера */
+.banner {
+    position: relative;
+    text-align: center;
+    color: white;
+    margin: 0; /* Убираем отступы сверху и снизу */
+    padding: 0; /* Убираем внутренние отступы */
+    box-shadow: none; /* Убираем тень */
+    transition: none; /* Убираем transition */
+}
+.banner:hover {
+    transform: none; /* Отменяем любые трансформации при наведении */
+}
+.banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.banner-content {
+    position: absolute;
+    left: 20%;
+    top: 73%; /*  Изменение: Опускаем окошко еще ниже! Попробуйте разные значения */
+    transform: translate(-50%, -50%);
+    background-color: rgba(46, 44, 44, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center; /*  Изменение: Центрируем текст внутри banner-content */
+}
+
+/* Стили для кнопки записи */
+.button {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #460404; /* Основной цвет кнопки */
+    color: #fff; /* Цвет текста */
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход цвета и масштаба */
+    position: relative;
+    overflow: hidden;
+    border: none; /* Убираем стандартную рамку */
+    cursor: pointer; /* Меняем курсор на руку */
+}
+.button:hover {
+    background-color: #580707; /* Более темный оттенок при наведении */
+    transform: scale(1.05); /* Небольшое увеличение при наведении */
+}
+.button .arrow {
+    position: absolute;
+    top: 50%;
+    right: 10px; /* Позиционируем стрелку справа */
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 6px solid transparent;
+    border-bottom: 6px solid transparent;
+    border-left: 8px solid #fff; /* Цвет стрелки (белый) */
+    transition: right 0.3s ease; /* Плавное перемещение стрелки */
+}
+.button:hover .arrow {
+    right: 5px; /* Сдвигаем стрелку немного влево */
+}
+
+/* Стили для разделов */
+section {
+    margin-bottom: 50px; /* Увеличиваем отступ между разделами */
+    padding: 40px; /* Увеличиваем внутренний отступ */
+    border: none; /* Убираем рамку */
+    border-radius: 0; /* Убираем скругление */
+    background-color: #f9f9f9; /* Светлый фон */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
+    transition: all 0.3s ease; /* Плавный переход для анимации */
+}
+section:hover {
+    transform: translateY(-5px); /* Поднимаем секцию при наведении */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Усиливаем тень при наведении */
+}
+section:not(.banner):hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+section h2 {
+    text-align: center;
+    margin-bottom: 30px; /* Увеличиваем отступ под заголовком */
+    font-size: 2.5em; /* Увеличиваем размер шрифта */
+    color: #333; /* Темный цвет заголовка */
+    text-transform: uppercase; /* Преобразуем в верхний регистр */
+    letter-spacing: 2px; /* Увеличиваем расстояние между буквами */
+}
+.about-content,
+.sterility-content,
+.conditions-content {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Увеличиваем расстояние между текстом и изображением */
+}
+.text-container {
+    flex: 1; /* Занимает доступное пространство */
+    font-size: 1.2em; /* Увеличиваем размер шрифта */
+    line-height: 1.6; /* Увеличиваем межстрочный интервал */
+    color: #555; /* Более темный цвет текста */
+}
+.text-container ul {
+    list-style-type: disc; /* Маркированный список */
+    margin-left: 30px; /* Увеличиваем отступ списка */
+    margin-bottom: 15px; /* Добавляем отступ под списком */
+}
+.text-container li {
+    margin-bottom: 10px; /* Добавляем отступ между элементами списка */
+}
+.image-container {
+    width: 50%; /* Увеличиваем ширину для изображений */
+    max-width: 600px; /* Максимальная ширина */
+    border-radius: 0; /* Убираем скругление */
+    overflow: hidden; /* Обрезает изображение, если оно больше контейнера */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень для изображений */
+    transition: box-shadow 0.3s ease; /* Плавный переход для тени */
+}
+.image-container:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Усиливаем тень при наведении */
+}
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block; /* Убирает отступы снизу у изображений */
+    object-fit: cover; /* Заполняет контейнер, обрезая изображение */
+    transition: transform 0.3s ease; /* Плавный переход для масштабирования */
+}
+.image-container:hover img {
+    transform: scale(1.1); /* Увеличиваем масштаб при наведении */
+}
+.right {
+    order: 2; /* Перемещает изображение вправо */
+}
+.left {
+    order: -1; /* Перемещает изображение влево */
+}
+@media (max-width: 768px) {
+    section {
+        padding: 30px; /* Уменьшаем внутренний отступ */
+        margin-bottom: 40px; /* Уменьшаем отступ между разделами */
+    }
+
+    section h2 {
+        font-size: 2em; /* Уменьшаем размер шрифта заголовка */
+    }
+
+    .about-content,
+    .sterility-content,
+    .conditions-content {
+        flex-direction: column; /* Перестраиваем в колонку на маленьких экранах */
+        align-items: stretch; /* Растягиваем элементы по ширине */
+        gap: 30px; /* Уменьшаем расстояние между текстом и изображением */
+    }
+
+    .image-container {
+        width: 100%; /* Изображение занимает всю ширину */
+        max-width: none; /* Убираем максимальную ширину */
+        margin-bottom: 30px; /* Увеличиваем отступ под изображением */
+    }
+
+    .text-container {
+        font-size: 1.1em; /* Уменьшаем размер шрифта текста */
+    }
+
+    .right,
+    .left {
+        order: 0; /* Возвращаем в исходное положение */
+    }
+}
+
+/* Стили для мастеров */
+.masters {
+    padding: 20px;
+    text-align: center;
+    position: relative; /*  Необходимо для z-index */
+    z-index: 0;        /* Устанавливаем z-index по умолчанию */
+}
+.masters-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    white-space: nowrap;
+    height: auto;
+    gap: 30px; /* Добавляем отступ между мастерами */
+}
+.master {
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #ffffff; /* Удаляем border-radius отсюда */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    border-radius: 10px; /* Добавляем border-radius сюда */
+}
+.master:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+.master img {
+    width: 300px; /* Увеличиваем ширину */
+    height: auto; /* Автоматическая высота для сохранения пропорций */
+    border-radius: 0; /* Убираем скругление */
+    object-fit: cover; /* Важно, чтобы изображения не искажались */
+    margin-bottom: 15px;
+}
+.master h3 {
+    margin-bottom: 5px;
+    color: #333;
+}
+.master p {
+    font-size: 0.9em;
+    color: #666;
+}
+.show-works-button {
+    background-color: #5c1212; /* Зеленый */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.show-works-button:hover {
+    background-color: #731a1a; /* Более темный зеленый */
+    transform: scale(1.05);
+}
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 30%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    /* Добавляем position: relative, чтобы создать новый контекст наложения */
+    position: relative;
+    overflow: auto;
+}
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 40px; /* Увеличили размер */
+    font-weight: bold;
+    cursor: pointer;
+    color: #aaa; /* Светло-серый цвет */
+    transition: color 0.3s ease;
+}
+.close:hover {
+    color: #000000;
+}
+
+/* Стили для работ мастеров */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 10px; /* Добавили отступы */
+}
+.works-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; /* Добавили анимацию при наведении */
+}
+.works-grid img:hover {
+    transform: scale(2.4); /* Небольшое увеличение при наведении */
+}
+
+/* Стили для услуг */
+.services {
+    padding: 60px 20px;
+    background-color: #f9f9f9;
+    position: relative;
+}
+.services h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.4em;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.service-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    text-align: center
+}
+.service-card {
+    background-color: #fff;
+    border-radius: 12px;
+    box-sizing: border-box;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 350px;
+}
+.service-card p {
+    margin-bottom: 0;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+.service-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px 12px 0 0;
+    display: block;
+    flex-shrink: 0;
+}
+    .service-header {
+        display: block;
+        padding-top: 0.7em;
+        padding-right: 1em;
+        padding-bottom: 0; /* Отступ снизу убран */
+        padding-left: 1em;
+        border-bottom: 0px solid #e2e8f0;
+        font-size: 1.3em;
+        cursor: pointer;
+        position: relative;
+        user-select: none;
+        color: #333;
+        font-weight: 700;
+        flex-shrink: 0;
+    }
+.service-header:before {
+    content: "";
+    position: absolute;
+    top: 0.9em;
+    right: 0.8em;
+    width: 1em;
+    height: 1em;
+}
+.service-content p.full-description {
+    width:100%;
+}
+.service-content {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    width: calc(106% - 20px);
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(0); /* Контент скрыт по умолчанию */
+    transition: transform 0.5s ease-in-out;
+    overflow-y: auto;
+    max-height: 300px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+}
+.service-card.active .service-content {
+    transform: translateY(100%); /*  Контент показывается, только когда карточка активна */
+}
+.service-content p.full-description {
+    width: 100%; /* Занимает всю ширину */
+    margin: 0;  /* Убираем стандартные margin параграфа */
+    padding: 0; /* Убираем стандартные padding параграфа */
+    text-align: left; /* Выравниваем текст по левому краю */
+}
+.price {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #661111;
+    text-align: right;
+    margin-top: auto;
+    padding: 0.7em 1em;
+    border-top: 1px solid #e2e8f0;
+    flex-shrink: 0;
+    position: relative; /* Важно для правильного отображения! */
+}
+.footer {
+    background-color: #000000;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+.footer a {
+    color: #831111; /* Изменение цвета ссылки */
+    text-decoration: none; /* Убираем подчеркивание по умолчанию */
+    transition: color 0.3s ease; /* Плавный переход цвета */
+}
+.footer a:hover {
+    color: #fff; /* Изменение цвета при наведении */
+}
