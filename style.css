@@ -65,7 +65,7 @@ header nav a:hover::after {
 
 
 
-/* Стили для контейнера формы (фон, положение) */
+/* CSS (включая стили для кнопки открытия) */
 .contact-form-container {
   position: fixed; /* Фиксированное положение на экране */
   top: 0;
@@ -77,11 +77,9 @@ header nav a:hover::after {
   justify-content: center;
   align-items: center;
   z-index: 1000; /* Поверх всего контента */
-  /* overflow: auto;  - Убрал  (см. комментарий выше) */
-  min-height: 100vh; /*  Добавлено: Занимает всю высоту экрана для вертикального центрирования */
+  min-height: 100vh; /* Занимает всю высоту экрана */
 }
 
-/* Стили для самого окна формы */
 .contact-form {
   background-color: #fff;
   padding: 30px; /* Увеличиваем отступы */
@@ -92,7 +90,6 @@ header nav a:hover::after {
   position: relative; /* Для позиционирования кнопки закрытия */
 }
 
-/* Стили для заголовка формы */
 .contact-form h2 {
   text-align: center;
   margin-bottom: 25px; /* Увеличиваем отступ от заголовка */
@@ -101,7 +98,6 @@ header nav a:hover::after {
   font-weight: 600; /* Делаем шрифт полужирным */
 }
 
-/* Стили для кнопки закрытия */
 .close-button {
   position: absolute;
   top: 15px; /* Корректируем положение */
@@ -118,7 +114,6 @@ header nav a:hover::after {
   color: #333; /* Изменяем цвет при наведении */
 }
 
-/* Стили для меток (labels) */
 .contact-form label {
   display: block;
   margin-bottom: 8px; /* Увеличиваем отступ */
@@ -126,7 +121,6 @@ header nav a:hover::after {
   color: #555;
 }
 
-/* Стили для полей ввода (input) и текстовой области (textarea) */
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form textarea {
@@ -140,7 +134,6 @@ header nav a:hover::after {
   font-family: inherit; /* Наследуем шрифт от родительского элемента */
 }
 
-/* Стили для текстовой области (textarea) */
 .contact-form textarea {
   resize: vertical;
   min-height: 150px; /* Увеличиваем высоту */
@@ -150,20 +143,19 @@ header nav a:hover::after {
 .contact-form button[type="submit"] {
   background-color: #007bff;
   color: white;
-  padding: 14px 25px; /* Увеличиваем отступы */
+  padding: 14px 25px;
   border: none;
-  border-radius: 8px; /* Скругляем углы */
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 18px; /* Увеличиваем размер шрифта */
+  font-size: 18px;
   width: 100%;
-  transition: background-color 0.3s ease; /* Плавное изменение цвета */
+  transition: background-color 0.3s ease;
 }
 
 .contact-form button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-/* Стили для сообщения об отправке */
 .contact-form #messageSent {
   margin-top: 20px; /* Увеличиваем отступ */
   text-align: center;
@@ -173,6 +165,25 @@ header nav a:hover::after {
 
 .hidden {
   display: none;
+}
+/*Стили для кнопки открытия (добавлено)*/
+.open-form-button {
+  background-color: #3498db; /* Цвет фона */
+  color: white; /* Цвет текста */
+  padding: 10px 20px; /* Отступы */
+  border: none; /* Убираем рамку */
+  border-radius: 5px; /* Скругляем углы */
+  cursor: pointer; /* Меняем курсор при наведении */
+  font-size: 16px; /* Размер текста */
+  transition: background-color 0.3s ease; /* Плавный переход цвета */
+  margin-bottom: 20px; /* Отступ снизу, чтобы не слипалась с другим контентом */
+  display: block; /* По умолчанию, чтобы кнопка была блочным элементом */
+  margin-left: auto;
+  margin-right: auto; /* Центрируем кнопку по горизонтали */
+}
+
+.open-form-button:hover {
+  background-color: #2980b9; /* Цвет фона при наведении */
 }
 
 
