@@ -23,37 +23,43 @@
     </div>
 </header>
 
-    <section class="banner">
-        <img src="images\баннер1.png" alt="Баннер с татуировками"> <!-- Замените banner.jpg на путь к вашему баннеру -->
-        <div class="banner-content">
-            <h1>Воплотите свою мечту в реальность!</h1>
-            <p>Профессиональные татуировки любой сложности.</p>
+    
+<section class="banner">
+  <img src="" alt="Баннер с татуировками">
+  <div class="banner-content">
+    <h1>Воплотите свою мечту в реальность!</h1>
+    <p>Профессиональные татуировки любой сложности.</p>
 
+    <!-- Кнопка "Записаться на сеанс" -->
+    <button id="openFormButton" class="button">
+      Записаться на сеанс
+      <span class="arrow"></span>
+    </button>
 
-<a class="button" href="t.me/suvorov_studio_bot">Записаться на сеанс
-    <span class="arrow"></span>
-</a>
+    <!-- Форма обратной связи (скрыта по умолчанию) -->
+    <div id="contactFormContainer" class="contact-form-container" style="display: none;">
+      <div class="contact-form">
+        <h2>Записаться на сеанс</h2>
+        <button id="closeFormButton" class="close-button">X</button>
+        <form id="contactForm">
+          <label for="name">Имя:</label>
+          <input type="text" id="name" name="name" required><br><br>
 
-        </div>
-    </section>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required><br><br>
 
+          <label for="message">Сообщение:</label><br>
+          <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
 
-     <section class="bot" id="bot">
- <form id="contactForm">
-    <label for="name">Имя:</label>
-    <input type="text" id="name" name="name" required><br><br>
+          <button type="submit">Отправить сообщение</button>
+        </form>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
+        <div id="messageSent"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <label for="message">Сообщение:</label><br>
-    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
-
-    <button type="submit">Отправить сообщение</button>
-  </form>
-
-  <div id="messageSent"></div>
-          </section>
 
     
     <section class="about-us" id="about">
@@ -70,6 +76,8 @@
     </div>
 </section>
 
+
+    
 <section class="sterility">
     <h2>Стерильность</h2>
     <div class="sterility-content">
@@ -89,6 +97,8 @@
     </div>
 </section>
 
+
+    
 <section class="conditions">
     <h2>Условия в студии</h2>
     <div class="conditions-content">
@@ -112,6 +122,7 @@
     <h2>Наши Мастера</h2>
     <div class="masters-container">
 
+        
         <div class="master" data-master-name="Цветкова Анна" data-works='["images/реализм1.png", "images/реализм2.png", "images/реализм3.png", "images/реализм4.png", "images/реализм5.png", "images/реализм6.png", "images/реализм7.png", "images/реализм8.png"]'>
             <img src="images\мастер_3.png" alt="Цветкова Анна">
             <h3>Цветкова Анна</h3>
@@ -119,6 +130,7 @@
             <button class="show-works-button">Посмотреть работы</button>
         </div>
 
+        
         <div class="master" data-master-name="Гребнюк Виталий" data-works='["images/аква1.png", "images/аква2.png", "images/аква3.png", "images/аква4.png", "images/аква5.png", "images/аква6.png", "images/аква7.png", "images/аква8.png"]'>
             <img src="images\мастер_4.png" alt="Гребнюк Виталий">
             <h3>Гребнюк Виталий</h3>
@@ -126,6 +138,7 @@
             <button class="show-works-button">Посмотреть работы</button>
         </div>
 
+        
 <div class="master" data-master-name="Первишко Елена" data-works='["images/олд1.png", "images/олд2.png", "images/олд3.png", "images/олд4.png", "images/олд5.png", "images/гравюра1.png", "images/гравюра2.png", "images/гравюра3.png"]'>
     <img src="images/мастер_2.png" alt="Первишко Елена">
     <h3>Первишко Елена</h3>
@@ -133,6 +146,7 @@
     <button class="show-works-button">Посмотреть работы</button>
 </div>
 
+        
 <div class="master" data-master-name="Пига Алексей" data-works='["images/геом1.png", "images/мин1.png", "images/мин2.png", "images/геом2.png", "images/геом3.png", "images/геом4.png", "images/геом5.png", "images/геом6.png"]'>
     <img src="images/мастер_1.png" alt="Пига Алексей">
     <h3>Пига Алексей</h3>
@@ -141,6 +155,7 @@
 </div>
     </div>
 
+       
     <div id="worksModal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -202,6 +217,7 @@
         </div>
 </div>
 
+        
 <div class="services-description">
         <p>Каждая татуировка – это уникальное произведение искусства, созданное специально для вас. Цена формируется индивидуально и зависит от сложности эскиза, размера работы, уровня детализации и выбранного места нанесения. Мы поможем воплотить ваши самые смелые идеи в реальность!</p>
     </div>
@@ -210,6 +226,7 @@
 
 </section>
 
+    
 <footer class="footer" id="contacts">
     <div class="footer-content">
         <h2>Студия Суворова</h2>
@@ -221,6 +238,8 @@
         <p><a href="https://yandex.ru/profile/213603475463?lang=ru&no-distribution=1&view-state=mini&source=wizbiz_new_map_single" target="_blank" rel="noopener noreferrer">Посмотреть на Яндекс.Картах</a></p>
     </div>
 </footer>
+    
 <script src="script.js"></script>
+    
 </body>
 </html>
