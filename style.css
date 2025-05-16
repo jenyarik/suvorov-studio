@@ -171,6 +171,9 @@ header nav a:hover::after {
   font-weight: bold;
 }
 
+.hidden {
+  display: none;
+}
 
 
 /* Стили для баннера */
