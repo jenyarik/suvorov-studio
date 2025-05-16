@@ -17,6 +17,7 @@
             <a href="#about">О студии</a>
             <a href="#masters">Мастера</a>
             <a href="#services">Услуги</a>
+            <a href="#bot">Запись</a>
             <a href="#contacts">Контакты</a>
         </nav>
     </div>
@@ -36,6 +37,25 @@
         </div>
     </section>
 
+
+     <section class="bot" id="bot">
+ <form id="contactForm">
+    <label for="name">Имя:</label>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="message">Сообщение:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+
+    <button type="submit">Отправить сообщение</button>
+  </form>
+
+  <div id="messageSent"></div>
+          </section>
+
+    
     <section class="about-us" id="about">
          <h2>О нас</h2>
     <div class="about-content">
