@@ -68,7 +68,6 @@ header nav a:hover::after {
 /* Стили для контейнера формы (фон, положение) */
 .contact-form-container {
   position: fixed; /* Фиксированное положение на экране */
-  margin: 0 auto;  
   top: 0;
   left: 0;
   width: 100%;
@@ -78,7 +77,8 @@ header nav a:hover::after {
   justify-content: center;
   align-items: center;
   z-index: 1000; /* Поверх всего контента */
-  overflow: auto; /*  Добавляем прокрутку, если форма не помещается на экране */
+  /* overflow: auto;  - Убрал  (см. комментарий выше) */
+  min-height: 100vh; /*  Добавлено: Занимает всю высоту экрана для вертикального центрирования */
 }
 
 /* Стили для самого окна формы */
