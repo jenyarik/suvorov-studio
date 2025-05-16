@@ -68,6 +68,7 @@ header nav a:hover::after {
 /* Стили для контейнера формы (фон, положение) */
 .contact-form-container {
   position: fixed; /* Фиксированное положение на экране */
+  margin: 0 auto;  
   top: 0;
   left: 0;
   width: 100%;
