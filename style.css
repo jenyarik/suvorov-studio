@@ -130,6 +130,80 @@ header nav a:hover::after {
     right: 5px; /* Сдвигаем стрелку немного влево */
 }
 
+
+/* Секция с формой */
+.bot {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 80%; /* Занимает 80% ширины экрана */
+  max-width: 500px; /*  Ограничивает максимальную ширину */
+}
+
+/* Заголовок формы */
+.bot h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Стили для меток (labels) */
+.bot label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+/* Стили для полей ввода (input) и текстовой области (textarea) */
+.bot input[type="text"],
+.bot input[type="email"],
+.bot textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /*  Важно для правильного расчета ширины с padding и border */
+  font-size: 16px;
+}
+
+/* Стили для текстовой области (textarea) */
+.bot textarea {
+  resize: vertical; /* Разрешаем изменение размера по вертикали */
+}
+
+/* Стили для кнопки отправки */
+.bot button[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: background-color 0.3s ease; /*  Эффект при наведении */
+}
+
+.bot button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+/* Сообщение об отправке */
+.bot #messageSent {
+  margin-top: 10px;
+  text-align: center;
+  color: green;
+  font-weight: bold;
+}
+
+/* Стили для сообщений об ошибках (добавьте, если необходимо) */
+.bot #messageSent.error {
+  color: red;
+}
+
+
 /* Стили для разделов */
 section {
     margin-bottom: 50px; /* Увеличиваем отступ между разделами */
