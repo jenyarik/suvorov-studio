@@ -65,59 +65,78 @@ header nav a:hover::after {
 
 
 
-/* CSS (включая стили для кнопки открытия) */
+/* Стили для кнопки открытия формы */
+.open-form-button {
+  background-color: #3498db;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.open-form-button:hover {
+  background-color: #2980b9;
+}
+
+/* Стили для формы обратной связи */
 .contact-form-container {
-  position: fixed; /* Фиксированное положение на экране */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Поверх всего контента */
-  min-height: 100vh; /* Занимает всю высоту экрана */
+  z-index: 1000;
 }
 
 .contact-form {
   background-color: #fff;
-  padding: 30px; /* Увеличиваем отступы */
-  border-radius: 15px; /* Более скругленные углы */
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Более выразительная тень */
-  width: 90%; /* Увеличиваем ширину формы */
-  max-width: 600px; /* Увеличиваем максимальную ширину */
-  position: relative; /* Для позиционирования кнопки закрытия */
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 600px;
+  position: relative;
 }
 
 .contact-form h2 {
   text-align: center;
-  margin-bottom: 25px; /* Увеличиваем отступ от заголовка */
+  margin-bottom: 25px;
   color: #333;
-  font-size: 24px; /* Увеличиваем размер шрифта */
-  font-weight: 600; /* Делаем шрифт полужирным */
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .close-button {
   position: absolute;
-  top: 15px; /* Корректируем положение */
-  right: 15px; /* Корректируем положение */
+  top: 15px;
+  right: 15px;
   background-color: transparent;
   border: none;
-  font-size: 24px; /* Увеличиваем размер шрифта */
+  font-size: 24px;
   cursor: pointer;
-  color: #888; /* Делаем цвет серым */
-  transition: color 0.3s ease; /* Плавное изменение цвета при наведении */
+  color: #888;
+  transition: color 0.3s ease;
 }
 
 .close-button:hover {
-  color: #333; /* Изменяем цвет при наведении */
+  color: #333;
 }
 
 .contact-form label {
   display: block;
-  margin-bottom: 8px; /* Увеличиваем отступ */
-  font-weight: 500; /* Делаем шрифт полужирным */
+  margin-bottom: 8px;
+  font-weight: 500;
   color: #555;
 }
 
@@ -125,21 +144,20 @@ header nav a:hover::after {
 .contact-form input[type="email"],
 .contact-form textarea {
   width: 100%;
-  padding: 12px; /* Увеличиваем отступы */
-  margin-bottom: 20px; /* Увеличиваем отступ */
+  padding: 12px;
+  margin-bottom: 20px;
   border: 1px solid #ccc;
-  border-radius: 8px; /* Скругляем углы */
+  border-radius: 8px;
   box-sizing: border-box;
   font-size: 16px;
-  font-family: inherit; /* Наследуем шрифт от родительского элемента */
+  font-family: inherit;
 }
 
 .contact-form textarea {
   resize: vertical;
-  min-height: 150px; /* Увеличиваем высоту */
+  min-height: 150px;
 }
 
-/* Стили для кнопки отправки */
 .contact-form button[type="submit"] {
   background-color: #007bff;
   color: white;
@@ -157,35 +175,81 @@ header nav a:hover::after {
 }
 
 .contact-form #messageSent {
-  margin-top: 20px; /* Увеличиваем отступ */
+  margin-top: 20px;
   text-align: center;
   color: green;
   font-weight: bold;
 }
 
+/* Скрыть элементы по умолчанию */
 .hidden {
   display: none;
 }
-/*Стили для кнопки открытия (добавлено)*/
-.open-form-button {
-  background-color: #3498db; /* Цвет фона */
-  color: white; /* Цвет текста */
-  padding: 10px 20px; /* Отступы */
-  border: none; /* Убираем рамку */
-  border-radius: 5px; /* Скругляем углы */
-  cursor: pointer; /* Меняем курсор при наведении */
-  font-size: 16px; /* Размер текста */
-  transition: background-color 0.3s ease; /* Плавный переход цвета */
-  margin-bottom: 20px; /* Отступ снизу, чтобы не слипалась с другим контентом */
-  display: block; /* По умолчанию, чтобы кнопка была блочным элементом */
-  margin-left: auto;
-  margin-right: auto; /* Центрируем кнопку по горизонтали */
+
+/* Стили для панели администратора */
+.admin-panel-container {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
 }
 
-.open-form-button:hover {
-  background-color: #2980b9; /* Цвет фона при наведении */
+#messagesTable {
+  width: 100%;
+  border-collapse: collapse;
 }
 
+#messagesTable th,
+#messagesTable td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+#messagesTable th {
+  background-color: #f2f2f2;
+}
+
+/* Стили для модального окна */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1001;
+  display: none;
+  text-align: center;
+}
+
+#adminPassword {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+#confirmPasswordButton {
+  background-color: #5cb85c;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
 /* Стили для баннера */
 .banner {
