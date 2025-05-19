@@ -37,21 +37,15 @@
   </div>
 </section>
 
-<div id="contactFormContainer" class="contact-form-container hidden">
-        <div class="contact-form">
-            <h2>Записаться на сеанс</h2>
-            <button id="closeFormButton" class="close-button">X</button>
-            <form id="contactForm">
-                <label for="name">Имя:</label>
-                <input type="text" id="name" name="name" required><br><br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
-                <label for="message">Сообщение:</label><br>
-                <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
-                <button type="submit">Отправить сообщение</button>
-            </form>
-            <div id="messageSent"></div>
-        </div>
+ <!-- Контейнер чата -->
+    <div id="chatContainer" class="chat-container">
+        <!-- Здесь будут отображаться сообщения -->
+    </div>
+
+    <!-- Форма отправки сообщений -->
+    <div class="chat-input-container">
+        <input type="text" id="chatInput" placeholder="Введите сообщение...">
+        <button id="sendButton">Отправить</button>
     </div>
 
     <!-- Панель администратора (скрыта по умолчанию) -->
@@ -72,17 +66,12 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Кнопка для отображения панели администратора -->
     <button id="toggleAdminPanelButton">Показать Панель администратора</button>
-    <!-- Модальное окно для ввода пароля администратора -->
     <div id="passwordModal" class="modal">
       <h2>Введите пароль администратора</h2>
       <input type="password" id="adminPassword" placeholder="Пароль">
       <button id="confirmPasswordButton">Подтвердить</button>
     </div>
-
-    <!-- Overlay для затемнения фона -->
     <div id="overlay" class="overlay"></div>
 
 
