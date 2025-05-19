@@ -64,175 +64,6 @@ header nav a:hover::after {
 }
 
 
-
-/* Стили для контейнера чата */
-      .chat-container {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin-bottom: 20px;
-        height: 300px;
-        overflow-y: scroll;
-      }
-
-      /* Стили для сообщений чата */
-      .message {
-        padding: 8px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-      }
-
-      .user-message {
-        background-color: #DCF8C6;
-        align-self: flex-end;
-      }
-
-      .bot-message {
-        background-color: #ECE5DD;
-        align-self: flex-start;
-      }
-
-      /* Стили для формы отправки сообщений */
-      .chat-input-container {
-        display: flex;
-      }
-
-      #chatInput {
-        flex-grow: 1;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-
-      #sendButton {
-        padding: 8px 15px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-      /* Стили для скрытия элементов */
-      .hidden {
-        display: none;
-      }
-
-      /* Стили для панели администратора */
-      .admin-panel-container {
-        margin-top: 20px;
-        border: 1px solid #ccc;
-        padding: 10px;
-      }
-
-      #messagesTable {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      #messagesTable th,
-      #messagesTable td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-      }
-
-      #messagesTable th {
-        background-color: #f2f2f2;
-      }
-
-      /* Стили для модального окна */
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-        display: none;
-      }
-
-      .modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        padding: 20px;
-        border: 1px solid #ccc;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        z-index: 1001;
-        display: none;
-        text-align: center;
-      }
-
-      #adminPassword {
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-      }
-
-      #confirmPasswordButton {
-        background-color: #5cb85c;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      /* Стили для нового контейнера чата */
-      .chat-container {
-        border: 1px solid #ccc;
-        padding: 10px;
-        margin-bottom: 20px;
-        height: 300px;
-        overflow-y: scroll;
-        display: flex; /* Используем flexbox для выравнивания сообщений */
-        flex-direction: column; /* Сообщения располагаются в столбец */
-      }
-
-      /* Стили для сообщений чата */
-      .message {
-        padding: 8px;
-        margin-bottom: 5px;
-        border-radius: 5px;
-        width: fit-content; /* Сообщение занимает только необходимую ширину */
-        max-width: 80%; /* Максимальная ширина сообщения */
-      }
-
-      /* Стили для сообщений пользователя */
-      .user-message {
-        background-color: #DCF8C6;
-        align-self: flex-end; /* Выравниваем сообщения пользователя вправо */
-      }
-
-      /* Стили для сообщений бота */
-      .bot-message {
-        background-color: #ECE5DD;
-        align-self: flex-start; /* Выравниваем сообщения бота влево */
-      }
-
-      /* Стили для контейнера ввода */
-      .chat-input-container {
-        display: flex;
-      }
-
-      #chatInput {
-        flex-grow: 1;
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-
-      #sendButton {
-        padding: 8px 15px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
 /* Стили для баннера */
 .banner {
     position: relative;
@@ -411,23 +242,13 @@ section h2 {
     }
 }
 
-/* Стили для раздела с мастерами */
+/* Стили для мастеров */
 .masters {
     padding: 20px;
     text-align: center;
     position: relative; /*  Необходимо для z-index */
     z-index: 0;        /* Устанавливаем z-index по умолчанию */
 }
-
-/* Стили для раздела с мастерами */
-.masters {
-    padding: 20px;
-    text-align: center;
-    position: relative; /*  Необходимо для z-index */
-    z-index: 0;        /* Устанавливаем z-index по умолчанию */
-}
-
-/* Стили для контейнера мастеров */
 .masters-container {
     display: flex;
     justify-content: center;
@@ -438,23 +259,18 @@ section h2 {
     height: auto;
     gap: 30px; /* Добавляем отступ между мастерами */
 }
-
-/* Стили для элемента master */
 .master {
     text-align: center;
     padding: 20px;
-    border: 1px solid #ffffff;
+    border: 1px solid #ffffff; /* Удаляем border-radius отсюда */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border-radius: 10px;
+    border-radius: 10px; /* Добавляем border-radius сюда */
 }
-
 .master:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
-
-/* Стили для изображения мастера */
 .master img {
     width: 300px; /* Увеличиваем ширину */
     height: auto; /* Автоматическая высота для сохранения пропорций */
@@ -462,20 +278,14 @@ section h2 {
     object-fit: cover; /* Важно, чтобы изображения не искажались */
     margin-bottom: 15px;
 }
-
-/* Стили для заголовка мастера */
 .master h3 {
     margin-bottom: 5px;
     color: #333;
 }
-
-/* Стили для описания мастера */
 .master p {
     font-size: 0.9em;
     color: #666;
 }
-
-/* Стили для кнопки "Показать работы" */
 .show-works-button {
     background-color: #5c1212; /* Зеленый */
     border: none;
@@ -490,46 +300,39 @@ section h2 {
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .show-works-button:hover {
     background-color: #731a1a; /* Более темный зеленый */
     transform: scale(1.05);
 }
-
-/* Стили для модального окна */
 .modal.show {
     display: block;
     opacity: 1;
 }
-
 .modal {
-    display: flex; /* Добавляем flexbox для центрирования контента */
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
+    height: 30%;
+    background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
+    /* Добавляем position: relative, чтобы создать новый контекст наложения */
+    position: relative;
     overflow: auto;
 }
-
-/* Стили для контента модального окна */
 .modal-content {
     position: relative;
     background-color: #fefefe;
+    margin: 15% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 800px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
-    animation-duration: 0.4s;
+    animation-duration: 0.4s
 }
-
-/* Стили для анимации */
 @keyframes slideIn {
     from {
         transform: translateY(-50px);
@@ -540,43 +343,38 @@ section h2 {
         opacity: 1;
     }
 }
-
-/* Стили для кнопки закрытия модального окна */
 .close {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 40px;
+    font-size: 40px; /* Увеличили размер */
     font-weight: bold;
     cursor: pointer;
-    color: #aaa;
+    color: #aaa; /* Светло-серый цвет */
     transition: color 0.3s ease;
 }
-
 .close:hover {
     color: #000000;
 }
 
-/* Стили для сетки работ мастера */
+/* Стили для работ мастеров */
 .works-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
-    padding: 10px;
+    padding: 10px; /* Добавили отступы */
 }
-
-/* Стили для изображений в сетке работ мастера */
 .works-grid img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* Добавили анимацию при наведении */
+}
+.works-grid img:hover {
+    transform: scale(2.4); /* Небольшое увеличение при наведении */
 }
 
-.works-grid img:hover {
-    transform: scale(2.4);
-}
 
 /* Стили для услуг */
 .services {
