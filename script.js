@@ -1,4 +1,81 @@
-document.addEventListener('DOMContentLoaded', function() {
+$(document).ready(function() {
+    //  Обработчик скролла
+    $(document).scroll(function() {
+        var scroll = $(this).scrollTop();
+        if (scroll >= 150) {
+            $("#popUp").css("margin-left", "-425px");
+            $("#plus").css("margin-left", "0px");
+        }
+    });
+
+    //  Обработчик открытия окна
+    $("#plus").click(function() {
+        $("#popUp").css("margin-left", "0px");
+        $("#darkBack").fadeIn(); // Показываем затемненный фон
+    });
+
+    //  Обработчик закрытия окна
+    $("#close").click(function() {
+        $("#popUp").css("margin-left", "-425px");
+        $("#darkBack").fadeOut(); // Скрываем затемненный фон
+    });
+
+    const chatInput = document.getElementById('chatInput');
+    const sendButton = document.getElementById('sendButton');
+    const chatMessages = document.getElementById('chatMessages');
+
+    // Функция для отображения сообщения в чате
+    function displayMessage(text, type) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(type); // 'user-message' или 'bot-message'
+        messageDiv.textContent = text;
+        chatMessages.appendChild(messageDiv);
+
+        // Автопрокрутка контейнера чата
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Обработчик для отправки сообщений в чат
+    sendButton.addEventListener('click', async function() {
+        const messageText = chatInput.value;
+        if (messageText.trim() !== '') {
+            // Отображаем сообщение пользователя в чате
+            displayMessage(messageText, 'user-message');
+
+            // Отправляем сообщение на сервер (в bot.js) и получаем ответ
+            try {
+                const response = await fetch('http://localhost:3000/bot', { // Замените на URL вашего API
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        message: {
+                            text: messageText
+                        }
+                    })
+                });
+
+                if (response.ok) {
+                    // Получаем ответ от сервера (если есть)
+                    const data = await response.json();
+                    const botResponse = data.response; // Предполагаем, что ответ бота приходит в поле "response"
+
+                    // Отображаем ответ бота в чате
+                    displayMessage(botResponse, 'bot-message');
+                } else {
+                    console.error('Ошибка при отправке сообщения на сервер:', response.status);
+                    displayMessage('Ошибка при отправке сообщения.', 'bot-message');
+                }
+            } catch (error) {
+                console.error('Ошибка при отправке сообщения:', error);
+                displayMessage('Ошибка при отправке сообщения.', 'bot-message');
+            }
+
+            chatInput.value = ''; // Очищаем поле ввода
+        }
+    });
     // --- Управление карточками услуг ---
     const serviceCards = document.querySelectorAll('.service-card');
 
