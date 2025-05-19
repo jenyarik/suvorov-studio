@@ -411,13 +411,15 @@ section h2 {
     }
 }
 
-/* Стили для мастеров */
+/* Стили для раздела с мастерами */
 .masters {
     padding: 20px;
     text-align: center;
     position: relative; /*  Необходимо для z-index */
     z-index: 0;        /* Устанавливаем z-index по умолчанию */
 }
+
+/* Стили для контейнера мастеров */
 .masters-container {
     display: flex;
     justify-content: center;
@@ -428,18 +430,23 @@ section h2 {
     height: auto;
     gap: 30px; /* Добавляем отступ между мастерами */
 }
+
+/* Стили для элемента master */
 .master {
     text-align: center;
     padding: 20px;
-    border: 1px solid #ffffff; /* Удаляем border-radius отсюда */
+    border: 1px solid #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border-radius: 10px; /* Добавляем border-radius сюда */
+    border-radius: 10px;
 }
+
 .master:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
+/* Стили для изображения мастера */
 .master img {
     width: 300px; /* Увеличиваем ширину */
     height: auto; /* Автоматическая высота для сохранения пропорций */
@@ -447,14 +454,20 @@ section h2 {
     object-fit: cover; /* Важно, чтобы изображения не искажались */
     margin-bottom: 15px;
 }
+
+/* Стили для заголовка мастера */
 .master h3 {
     margin-bottom: 5px;
     color: #333;
 }
+
+/* Стили для описания мастера */
 .master p {
     font-size: 0.9em;
     color: #666;
 }
+
+/* Стили для кнопки "Показать работы" */
 .show-works-button {
     background-color: #5c1212; /* Зеленый */
     border: none;
@@ -469,39 +482,45 @@ section h2 {
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 .show-works-button:hover {
     background-color: #731a1a; /* Более темный зеленый */
     transform: scale(1.05);
 }
+
+/* Стили для модального окна */
 .modal.show {
     display: block;
     opacity: 1;
 }
+
 .modal {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 30%;
+    height: 100%; /* Изменено на 100% */
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    /* Добавляем position: relative, чтобы создать новый контекст наложения */
-    position: relative;
     overflow: auto;
 }
+
+/* Стили для контента модального окна */
 .modal-content {
     position: relative;
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto; /* Изменено значение margin */
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
     max-width: 800px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
 }
+
+/* Стили для анимации */
 @keyframes slideIn {
     from {
         transform: translateY(-50px);
@@ -512,36 +531,42 @@ section h2 {
         opacity: 1;
     }
 }
+
+/* Стили для кнопки закрытия модального окна */
 .close {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 40px; /* Увеличили размер */
+    font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-    color: #aaa; /* Светло-серый цвет */
+    color: #aaa;
     transition: color 0.3s ease;
 }
+
 .close:hover {
     color: #000000;
 }
 
-/* Стили для работ мастеров */
+/* Стили для сетки работ мастера */
 .works-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 15px;
-    padding: 10px; /* Добавили отступы */
+    padding: 10px;
 }
+
+/* Стили для изображений в сетке работ мастера */
 .works-grid img {
     width: 100%;
     height: auto;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease; /* Добавили анимацию при наведении */
+    transition: transform 0.3s ease;
 }
+
 .works-grid img:hover {
-    transform: scale(2.4); /* Небольшое увеличение при наведении */
+    transform: scale(2.4);
 }
 
 /* Стили для услуг */
