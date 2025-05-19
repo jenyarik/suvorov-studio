@@ -419,6 +419,14 @@ section h2 {
     z-index: 0;        /* Устанавливаем z-index по умолчанию */
 }
 
+/* Стили для раздела с мастерами */
+.masters {
+    padding: 20px;
+    text-align: center;
+    position: relative; /*  Необходимо для z-index */
+    z-index: 0;        /* Устанавливаем z-index по умолчанию */
+}
+
 /* Стили для контейнера мастеров */
 .masters-container {
     display: flex;
@@ -495,13 +503,15 @@ section h2 {
 }
 
 .modal {
-    display: none;
+    display: flex; /* Добавляем flexbox для центрирования контента */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%; /* Изменено на 100% */
-    background-color: rgba(0, 0, 0, 0.8);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный фон */
     z-index: 1000;
     overflow: auto;
 }
@@ -510,7 +520,6 @@ section h2 {
 .modal-content {
     position: relative;
     background-color: #fefefe;
-    margin: 5% auto; /* Изменено значение margin */
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
