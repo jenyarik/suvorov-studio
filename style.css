@@ -64,6 +64,120 @@ header nav a:hover::after {
 }
 
 
+
+
+/* Стили для затемненного фона */
+#darkBack {
+    width: 100%;
+    height: 100%;
+    background: rgba(76, 56, 75, .15);
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none; /* Скрываем по умолчанию */
+    z-index: 999; /* Чтобы фон был над всем контентом, но под окном чата */
+}
+
+/* Стили для всплывающего окна чат-бота */
+#popUp {
+    position: fixed;
+    max-width: 350px;
+    height: 400px; /* Увеличиваем высоту для чата */
+    background: rgba(236, 240, 241, 1);
+    border: 7px solid #fff;
+    bottom: 0;
+    margin-left: -425px; /* Скрываем окно за пределами экрана */
+    transition: all 1s ease;
+    right: 0; /* Прижимаем к правому краю */
+    z-index: 1000; /* Чтобы окно было над затемненным фоном */
+}
+
+/* Стили для кнопки закрытия чата */
+#popUp .close {
+    color: #464646;
+    right: 8px;
+    top: 0px;
+    position: absolute;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* Стили для заголовка чата */
+#popUp h2 {
+    font-size: 17px;
+    color: #464646;
+    line-height: 24px;
+    font-weight: 400;
+    text-align: center;
+    margin-top: 10px; /* Уменьшаем отступ сверху */
+    padding: 0 20px;
+}
+
+/* Стили для области сообщений */
+#chatMessages {
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: scroll;
+    height: 250px; /* Фиксированная высота для сообщений */
+}
+
+/* Стили для поля ввода и кнопки отправки */
+.chat-input {
+    padding: 10px;
+    display: flex;
+    align-items: center; /* Выравниваем элементы по вертикали */
+}
+
+.chat-input input[type="text"] {
+    flex-grow: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.chat-input button {
+    background-color: #1c8dc4;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 5px; /* Небольшой отступ от поля ввода */
+}
+
+/* Стили для кнопки открытия чата */
+#plus {
+    position: fixed;
+    color: #fff;
+    bottom: 15%;
+    right: 20px; /* Меняем на right: 20px; */
+    transition: all 1.25s ease;
+    cursor: pointer;
+    text-align: left;
+    letter-spacing: 1px;
+}
+
+#plus span {
+    position: absolute;
+    margin-top: 38px;
+    left: 4px;
+}
+
+#plus::after {
+    content: '';
+    display: block;
+    display: relative;
+    border-top: 55px solid transparent;
+    border-bottom: 55px solid transparent;
+    border-left: 55px solid #1c8dc4;
+}
+
+
+
+
+
+
+
 /* Стили для баннера */
 .banner {
     position: relative;
