@@ -65,192 +65,174 @@ header nav a:hover::after {
 
 
 
-/* Стили для кнопки открытия формы */
-.open-form-button {
-  background-color: #3498db;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
-  margin-bottom: 20px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+/* Стили для контейнера чата */
+      .chat-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 20px;
+        height: 300px;
+        overflow-y: scroll;
+      }
 
-.open-form-button:hover {
-  background-color: #2980b9;
-}
+      /* Стили для сообщений чата */
+      .message {
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+      }
 
-/* Стили для формы обратной связи */
-.contact-form-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
+      .user-message {
+        background-color: #DCF8C6;
+        align-self: flex-end;
+      }
 
-.contact-form {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-  width: 90%;
-  max-width: 600px;
-  position: relative;
-}
+      .bot-message {
+        background-color: #ECE5DD;
+        align-self: flex-start;
+      }
 
-.contact-form h2 {
-  text-align: center;
-  margin-bottom: 25px;
-  color: #333;
-  font-size: 24px;
-  font-weight: 600;
-}
+      /* Стили для формы отправки сообщений */
+      .chat-input-container {
+        display: flex;
+      }
 
-.close-button {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background-color: transparent;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #888;
-  transition: color 0.3s ease;
-}
+      #chatInput {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
 
-.close-button:hover {
-  color: #333;
-}
+      #sendButton {
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      /* Стили для скрытия элементов */
+      .hidden {
+        display: none;
+      }
 
-.contact-form label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 500;
-  color: #555;
-}
+      /* Стили для панели администратора */
+      .admin-panel-container {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+      }
 
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-family: inherit;
-}
+      #messagesTable {
+        width: 100%;
+        border-collapse: collapse;
+      }
 
-.contact-form textarea {
-  resize: vertical;
-  min-height: 150px;
-}
+      #messagesTable th,
+      #messagesTable td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+      }
 
-.contact-form button[type="submit"] {
-  background-color: #007bff;
-  color: white;
-  padding: 14px 25px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 18px;
-  width: 100%;
-  transition: background-color 0.3s ease;
-}
+      #messagesTable th {
+        background-color: #f2f2f2;
+      }
 
-.contact-form button[type="submit"]:hover {
-  background-color: #0056b3;
-}
+      /* Стили для модального окна */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        display: none;
+      }
 
-.contact-form #messageSent {
-  margin-top: 20px;
-  text-align: center;
-  color: green;
-  font-weight: bold;
-}
+      .modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 20px;
+        border: 1px solid #ccc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1001;
+        display: none;
+        text-align: center;
+      }
 
-/* Скрыть элементы по умолчанию */
-.hidden {
-  display: none;
-}
+      #adminPassword {
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
 
-/* Стили для панели администратора */
-.admin-panel-container {
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  padding: 10px;
-}
+      #confirmPasswordButton {
+        background-color: #5cb85c;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
 
-#messagesTable {
-  width: 100%;
-  border-collapse: collapse;
-}
+      /* Стили для нового контейнера чата */
+      .chat-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 20px;
+        height: 300px;
+        overflow-y: scroll;
+        display: flex; /* Используем flexbox для выравнивания сообщений */
+        flex-direction: column; /* Сообщения располагаются в столбец */
+      }
 
-#messagesTable th,
-#messagesTable td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-}
+      /* Стили для сообщений чата */
+      .message {
+        padding: 8px;
+        margin-bottom: 5px;
+        border-radius: 5px;
+        width: fit-content; /* Сообщение занимает только необходимую ширину */
+        max-width: 80%; /* Максимальная ширина сообщения */
+      }
 
-#messagesTable th {
-  background-color: #f2f2f2;
-}
+      /* Стили для сообщений пользователя */
+      .user-message {
+        background-color: #DCF8C6;
+        align-self: flex-end; /* Выравниваем сообщения пользователя вправо */
+      }
 
-/* Стили для модального окна */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
-  display: none;
-}
+      /* Стили для сообщений бота */
+      .bot-message {
+        background-color: #ECE5DD;
+        align-self: flex-start; /* Выравниваем сообщения бота влево */
+      }
 
-.modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border: 1px solid #ccc;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1001;
-  display: none;
-  text-align: center;
-}
+      /* Стили для контейнера ввода */
+      .chat-input-container {
+        display: flex;
+      }
 
-#adminPassword {
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
+      #chatInput {
+        flex-grow: 1;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
 
-#confirmPasswordButton {
-  background-color: #5cb85c;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
+      #sendButton {
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
 /* Стили для баннера */
 .banner {
     position: relative;
