@@ -1,3 +1,20 @@
+#loading {
+    position: fixed; /* Фиксированное положение */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #fff; /* Белый фон */
+    z-index: 9999; /* Поверх всего */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Скрываем индикатор загрузки после загрузки страницы */
+body.loaded #loading {
+    display: none;
+}
 .loader {
   width: 48px;
   height: 48px;
