@@ -18,10 +18,10 @@ document.getElementById('openFormButton').addEventListener('click', function() {
     });
 
     //  Обработчик закрытия окна
-    $("#close").click(function() {
-        $("#popUp").css("margin-left", "-425px");
-        $("#darkBack").fadeOut(); // Скрываем затемненный фон
-    });
+document.getElementById('close').addEventListener('click', function() {
+    document.getElementById('popUp').style.display = 'none';
+    document.getElementById('darkBack').style.display = 'none'; // Скрываем затемнённый фон
+});
 
     const chatInput = document.getElementById('chatInput');
     const sendButton = document.getElementById('sendButton');
