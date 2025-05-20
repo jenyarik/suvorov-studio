@@ -1,5 +1,9 @@
 $(document).ready(function() {
-    //  Обработчик скролла
+
+    // Скрываем окно чата при загрузке страницы
+    $("#popUp").css("margin-left", "-425px");
+
+    //  Обработчик скролла (удалите, если не нужен)
     $(document).scroll(function() {
         var scroll = $(this).scrollTop();
         if (scroll >= 150) {
@@ -12,6 +16,7 @@ $(document).ready(function() {
         $("#popUp").css("margin-left", "0px");
         $("#darkBack").fadeIn(); // Показываем затемненный фон
     });
+
     //  Обработчик закрытия окна
     $("#close").click(function() {
         $("#popUp").css("margin-left", "-425px");
@@ -59,7 +64,6 @@ $(document).ready(function() {
                     // Получаем ответ от сервера (если есть)
                     const data = await response.json();
                     const botResponse = data.response; // Предполагаем, что ответ бота приходит в поле "response"
-
                     // Отображаем ответ бота в чате
                     displayMessage(botResponse, 'bot-message');
                 } else {
@@ -70,10 +74,10 @@ $(document).ready(function() {
                 console.error('Ошибка при отправке сообщения:', error);
                 displayMessage('Ошибка при отправке сообщения.', 'bot-message');
             }
-
             chatInput.value = ''; // Очищаем поле ввода
         }
     });
+});
     // --- Управление карточками услуг ---
     const serviceCards = document.querySelectorAll('.service-card');
 
