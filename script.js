@@ -90,8 +90,7 @@ $(document).ready(function() {
         });
     });
 
-    // --- Модальное окно с работами мастеров ---
-    const mastersContainer = document.querySelector('.masters-container');
+  const mastersContainer = document.querySelector('.masters-container');
     if (mastersContainer) {
         const modal = document.getElementById('worksModal');
         const modalMasterName = document.getElementById('modal-master-name');
