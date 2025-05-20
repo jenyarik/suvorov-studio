@@ -67,7 +67,7 @@ header nav a:hover::after {
 
 
 
-/* Стили для затемненного фона */
+/* Общие стили для затемненного фона */
 #darkBack {
     width: 100%;
     height: 100%;
@@ -77,122 +77,166 @@ header nav a:hover::after {
     left: 0;
     display: none; /* Скрываем по умолчанию */
     z-index: 999; /* Чтобы фон был над всем контентом, но под окном чата */
+    transition: opacity 0.3s ease;  /* Добавляем плавное появление/исчезновение фона */
+    opacity: 0; /* Изначально полностью прозрачный */
+}
+
+#darkBack.active {
+    display: block;
+    opacity: 1; /* Делаем фон видимым */
 }
 
 /* Стили для всплывающего окна чат-бота */
-
 #popUp {
-    display: none;
     position: fixed;
     max-width: 350px;
     height: 400px; /* Увеличиваем высоту для чата */
-    background: #f0f0f0; /* Светло-серый фон */
-    border: 1px solid #ccc; /* Более тонкая граница */
+    background: #1e1e1e; /* Черный фон */
+    color: #fff; /* Белый текст по умолчанию */
     border-radius: 10px; /* Скругленные углы */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Тень для глубины */
     bottom: 20px;
     right: 20px; /* Отступ от правого края */
-    margin-left: -425px; /* Скрываем окно за пределами экрана */
-    transition: all 0.5s ease; /* Более плавная анимация */
     z-index: 1000; /* Чтобы окно было над затемненным фоном */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Добавляем тень */
+    font-family: sans-serif; /* Современный шрифт */
+    display: none; /* Скрываем по умолчанию */
+    transition: all 0.3s ease; /* Плавная анимация появления/исчезновения */
+    transform: translateY(100px); /* Скрываем окно выше видимой области */
+    opacity: 0;  /* Изначально полностью прозрачный */
+
 }
+
+#popUp.active {
+    display: block;
+    transform: translateY(0); /* Перемещаем окно вниз */
+    opacity: 1; /* Делаем окно видимым */
+}
+
 
 /* Стили для кнопки закрытия чата */
 #popUp .close {
-    color: #888; /* Серый цвет для кнопки закрытия */
-    right: 10px;
-    top: 10px;
+    color: #ff5252; /* Темно-красный цвет для кнопки закрытия */
+    right: 15px; /* Увеличиваем отступ справа */
+    top: 15px;  /* Увеличиваем отступ сверху */
     position: absolute;
-    font-size: 20px;
+    font-size: 24px; /* Увеличиваем размер шрифта */
     cursor: pointer;
     transition: color 0.3s ease; /* Плавное изменение цвета при наведении */
 }
 
 #popUp .close:hover {
-    color: #333; /* Темно-серый цвет при наведении */
+    color: #d32f2f; /* Более темный красный при наведении */
 }
 
 /* Стили для заголовка чата */
 #popUp h2 {
-    font-size: 18px; /* Увеличиваем размер шрифта */
-    color: #333; /* Темно-серый цвет для заголовка */
-    line-height: 24px;
-    font-weight: 600; /* Полужирный шрифт */
+    font-size: 20px; /* Увеличиваем размер шрифта */
+    color: #ff5252; /* Темно-красный цвет для заголовка */
     text-align: center;
-    margin-top: 10px; /* Уменьшаем отступ сверху */
-    padding: 0 20px;
+    padding: 15px 20px; /* Добавляем padding для красоты */
+    margin: 0; /* Убираем отступы */
+    border-bottom: 1px solid #333; /* Разделительная линия */
+    font-weight: bold; /* Жирный шрифт */
 }
 
 /* Стили для области сообщений */
 #chatMessages {
     flex-grow: 1;
-    padding: 10px;
+    padding: 15px;  /* Увеличиваем padding */
     overflow-y: auto; /* Автоматическая прокрутка */
-    height: 250px; /* Фиксированная высота для сообщений */
-    background: #fff; /* Белый фон для сообщений */
-    border-radius: 5px; /* Скругленные углы */
-    margin: 10px; /* Отступ от краев окна чата */
+    height: 300px; /* Увеличиваем высоту для сообщений */
+    background: #2e2e2e; /* Темно-серый фон для сообщений */
+    border-radius: 5px;
+    margin: 15px; /* Увеличиваем отступ */
+    font-size: 14px; /* Уменьшаем размер шрифта */
+}
+
+/* Стили для сообщений от пользователя */
+#chatMessages .user-message {
+    background-color: #ff5252; /* Темно-красный фон для сообщений пользователя */
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    align-self: flex-end; /* Выравниваем сообщения справа */
+    max-width: 70%; /* Ограничиваем ширину сообщений */
+    word-wrap: break-word; /* Перенос слов */
+}
+
+/* Стили для сообщений от бота */
+#chatMessages .bot-message {
+    background-color: #333; /* Темно-серый фон для сообщений бота */
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    align-self: flex-start; /* Выравниваем сообщения слева */
+    max-width: 70%; /* Ограничиваем ширину сообщений */
+    word-wrap: break-word; /* Перенос слов */
 }
 
 /* Стили для поля ввода и кнопки отправки */
 .chat-input {
-    padding: 10px;
+    padding: 15px; /* Увеличиваем padding */
     display: flex;
-    align-items: center; /* Выравниваем элементы по вертикали */
+    align-items: center;
+    border-top: 1px solid #333;  /* Разделительная линия */
 }
 
 .chat-input input[type="text"] {
     flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 14px; /* Уменьшаем размер шрифта */
+    padding: 10px;  /* Увеличиваем padding */
+    border: none; /* Убираем рамку */
+    background-color: #2e2e2e;  /* Темно-серый фон */
+    color: #fff;  /* Белый текст */
+    border-radius: 5px;
+    font-size: 15px;
+    margin-right: 10px; /* Отступ между полем ввода и кнопкой */
+}
+
+.chat-input input[type="text"]:focus {
+  outline: none; /* Убираем стандартную обводку при фокусе */
+  box-shadow: 0 0 5px #ff5252; /* Добавляем красную тень при фокусе */
 }
 
 .chat-input button {
-    background-color: #5c6bc0; /* Фиолетовый цвет для кнопки */
+    background-color: #ff5252; /* Темно-красный цвет для кнопки */
     color: #fff;
     border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 10px 15px; /* Увеличиваем padding */
+    border-radius: 5px;
     cursor: pointer;
-    margin-left: 5px; /* Небольшой отступ от поля ввода */
-    transition: background-color 0.3s ease; /* Плавное изменение цвета при наведении */
+    transition: background-color 0.3s ease;
+    font-size: 15px;
 }
 
 .chat-input button:hover {
-    background-color: #3f51b5; /* Более темный фиолетовый цвет при наведении */
+    background-color: #d32f2f; /* Более темный красный цвет при наведении */
 }
-
-/* Стили для кнопки открытия чата */
+/* Кнопка открытия чата */
 #plus {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 60px; /* Фиксированная ширина */
-    height: 60px; /* Фиксированная высота */
-    border-radius: 50%; /* Круглая форма */
-    background-color: #5c6bc0; /* Фиолетовый цвет */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #ff5252; /* Темно-красный цвет для кнопки открытия */
     color: #fff;
     text-align: center;
     cursor: pointer;
     transition: all 0.3s ease;
-    z-index: 1001; /* Отображаем над затемнением */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень */
-    overflow: hidden; /* Обрезаем содержимое, выходящее за границы */
+    z-index: 1001;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    font-size: 24px; /* Увеличиваем размер шрифта */
+    line-height: 60px; /* Центрируем иконку */
 }
 
 #plus:hover {
-    background-color: #3f51b5; /* Более темный фиолетовый цвет при наведении */
+    background-color: #d32f2f; /* Более темный красный при наведении */
 }
 
-/* Стили для иконки чата */
-#plus i {
-    font-size: 24px; /* Размер иконки */
-    line-height: 60px; /* Центрирование по вертикали */
-}
-
-/* Скрываем текст span */
 #plus span {
     display: none;
 }
