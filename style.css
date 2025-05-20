@@ -231,9 +231,11 @@ header nav a:hover::after {
 
 /* Стили для кнопки записи */
 .button {
-    display: inline-block;
+    display: inline-flex; /* Используем flex для выравнивания элементов */
+    align-items: center; /* Выравнивание элементов по вертикали */
+    justify-content: center; /* Выравнивание текста по центру */
     padding: 12px 24px;
-    background-color: #460404; /* Основной цвет кнопки */
+    background-color: #8B0000; /* Темно-красный цвет кнопки */
     color: #fff; /* Цвет текста */
     text-decoration: none;
     text-transform: uppercase;
@@ -241,30 +243,33 @@ header nav a:hover::after {
     font-weight: bold;
     letter-spacing: 1px;
     border-radius: 5px;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Плавный переход цвета и масштаба */
+    transition: background-color 0.3s ease, transform 0.3s ease;
     position: relative;
     overflow: hidden;
-    border: none; /* Убираем стандартную рамку */
-    cursor: pointer; /* Меняем курсор на руку */
+    border: none;
+    cursor: pointer;
 }
+
 .button:hover {
-    background-color: #580707; /* Более темный оттенок при наведении */
+    background-color: #A52A2A; /* Более светлый оттенок при наведении */
     transform: scale(1.05); /* Небольшое увеличение при наведении */
 }
+
 .button .arrow {
     position: absolute;
     top: 50%;
-    right: 10px; /* Позиционируем стрелку справа */
+    right: 10px;
     transform: translateY(-50%);
     width: 0;
     height: 0;
     border-top: 6px solid transparent;
     border-bottom: 6px solid transparent;
-    border-left: 8px solid #fff; /* Цвет стрелки (белый) */
-    transition: right 0.3s ease; /* Плавное перемещение стрелки */
+    border-left: 8px solid #fff;
+    transition: right 0.3s ease;
 }
+
 .button:hover .arrow {
-    right: 5px; /* Сдвигаем стрелку немного влево */
+    right: 5px;
 }
 
 
