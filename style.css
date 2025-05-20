@@ -80,7 +80,9 @@ header nav a:hover::after {
 }
 
 /* Стили для всплывающего окна чат-бота */
+
 #popUp {
+    display: none;
     position: fixed;
     max-width: 350px;
     height: 400px; /* Увеличиваем высоту для чата */
