@@ -7,6 +7,9 @@ $(document).ready(function() {
             $("#plus").css("margin-left", "0px");
         }
     });
+document.getElementById('openFormButton').addEventListener('click', function() {
+  document.getElementById('popUp').style.display = 'block';
+});
 
     //  Обработчик открытия окна
     $("#plus").click(function() {
