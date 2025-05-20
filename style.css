@@ -164,29 +164,34 @@ header nav a:hover::after {
 /* Стили для кнопки открытия чата */
 #plus {
     position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px; /* Фиксированная ширина */
+    height: 60px; /* Фиксированная высота */
+    border-radius: 50%; /* Круглая форма */
+    background-color: #5c6bc0; /* Фиолетовый цвет */
     color: #fff;
-    bottom: 20px; /* Отступ от нижнего края */
-    right: 20px; /* Отступ от правого края */
-    transition: all 0.5s ease; /* Более плавная анимация */
+    text-align: center;
     cursor: pointer;
-    text-align: left;
-    letter-spacing: 1px;
+    transition: all 0.3s ease;
     z-index: 1001; /* Отображаем над затемнением */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Тень */
+    overflow: hidden; /* Обрезаем содержимое, выходящее за границы */
 }
 
+#plus:hover {
+    background-color: #3f51b5; /* Более темный фиолетовый цвет при наведении */
+}
+
+/* Стили для иконки чата */
+#plus i {
+    font-size: 24px; /* Размер иконки */
+    line-height: 60px; /* Центрирование по вертикали */
+}
+
+/* Скрываем текст span */
 #plus span {
-    position: absolute;
-    margin-top: 38px;
-    left: 4px;
-}
-
-#plus::after {
-    content: '';
-    display: block;
-    display: relative;
-    border-top: 55px solid transparent;
-    border-bottom: 55px solid transparent;
-    border-left: 55px solid #5c6bc0; /* Фиолетовый цвет для кнопки */
+    display: none;
 }
 
 
