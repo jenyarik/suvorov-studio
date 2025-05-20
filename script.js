@@ -4,16 +4,14 @@ $(document).ready(function() {
         var scroll = $(this).scrollTop();
         if (scroll >= 150) {
             $("#popUp").css("margin-left", "-425px");
-            $("#plus").css("margin-left", "0px");
         }
     });
 
     //  Обработчик открытия окна
-    $("#plus").click(function() {
+    $("#openFormButton").click(function() {
         $("#popUp").css("margin-left", "0px");
         $("#darkBack").fadeIn(); // Показываем затемненный фон
     });
-
     //  Обработчик закрытия окна
     $("#close").click(function() {
         $("#popUp").css("margin-left", "-425px");
