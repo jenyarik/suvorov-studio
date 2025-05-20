@@ -100,6 +100,9 @@ document.getElementById('close').addEventListener('click', function() {
         const modalWorksGrid = document.getElementById('modal-works-grid');
         const closeBtn = document.querySelector('.close');
         // Функция для открытия модального окна
+        
+       document.getElementById('worksModal').style.zIndex = '100'; // Устанавливаем z-индекс модального окна
+
         function openModal(masterElement) {
             const masterName = masterElement.dataset.masterName;
             const worksData = JSON.parse(masterElement.dataset.works);
