@@ -7,17 +7,21 @@
     <link rel="stylesheet" href="style.css"> <!-- Подключите файл стилей -->
 
 <!-- Чат-бот -->
-<div id="darkBack" style="display: none;"></div>
+<!-- Кнопка чат-бота -->
+<div class="chatbot-toggle">💬</div>
 
-<div id="popUp">
-    <div id="close" class="close"><i class="fa fa-times"></i></div>
-    <h2>Чат с Tattoo Bot</h2>
-    <div id="chatMessages" class="chat-messages">
-        <!-- Сообщения будут добавляться сюда -->
+<!-- Окно чат-бота -->
+<div class="chatbot-window">
+    <div class="chatbot-header">
+        <span>Чат-бот</span>
+        <button class="chatbot-close">✕</button>
     </div>
-    <div class="chat-input">
-        <input type="text" id="chatInput" placeholder="Введите сообщение..." required />
-        <button id="sendButton">Отправить</button>
+    <div class="chatbot-messages" id="chatbotMessages">
+        <!-- Сообщения будут добавляться динамически -->
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Напишите сообщение..." />
+        <button class="chatbot-send">➤</button>
     </div>
 </div>
 
