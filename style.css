@@ -376,40 +376,46 @@ section h2 {
     }
 }
 
-/* Стили для мастеров */
 .masters {
     padding: 20px;
     text-align: center;
-    position: relative; /*  Необходимо для z-index */
-    z-index: 0;        /* Устанавливаем z-index по умолчанию */
+    position: relative;
+    z-index: 0;
 }
+
 .masters-container {
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    overflow-x: auto;
     padding-bottom: 20px;
-    white-space: nowrap;
-    height: auto;
-    gap: 30px; /* Добавляем отступ между мастерами */
+    gap: 30px; /* Отступ между мастерами */
+    flex-wrap: nowrap; /* Элементы в ряд */
+    overflow-x: hidden; /* Защита от случайного скролла */
 }
+
 .master {
     text-align: center;
     padding: 20px;
-    border: 1px solid #ffffff; /* Удаляем border-radius отсюда */
+    border: 1px solid #ffffff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    border-radius: 10px; /* Добавляем border-radius сюда */
+    border-radius: 10px;
+    flex: 0 0 auto; /* Фиксируем размеры */
+    width: calc(25% - 30px); /* Расчёт для 4 элементов с gap */
+    max-width: 300px; /* Ограничение по ширине */
+    box-sizing: border-box;
 }
+
 .master:hover {
     transform: translateY(-3px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
+
 .master img {
-    width: 300px; /* Увеличиваем ширину */
-    height: auto; /* Автоматическая высота для сохранения пропорций */
-    border-radius: 0; /* Убираем скругление */
-    object-fit: cover; /* Важно, чтобы изображения не искажались */
+    width: 100%; /* Растягиваем под родителя */
+    height: auto;
+    border-radius: 0;
+    object-fit: cover;
     margin-bottom: 15px;
 }
 .master h3 {
