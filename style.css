@@ -602,13 +602,13 @@ section h2 {
     box-sizing: border-box;
 }
 .service-card.active .service-content {
-    transform: translateY(100%);
+    transform: translateY(100%); /*  Контент показывается, только когда карточка активна */
 }
 .service-content p.full-description {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    text-align: left;
+    width: 100%; /* Занимает всю ширину */
+    margin: 0;  /* Убираем стандартные margin параграфа */
+    padding: 0; /* Убираем стандартные padding параграфа */
+    text-align: left; /* Выравниваем текст по левому краю */
 }
 .price {
     font-size: 1.4em;
@@ -619,7 +619,7 @@ section h2 {
     padding: 0.7em 1em;
     border-top: 1px solid #e2e8f0;
     flex-shrink: 0;
-    position: relative; 
+    position: relative; /* Важно для правильного отображения! */
 }
 .footer {
     background-color: #000000;
@@ -628,15 +628,10 @@ section h2 {
     padding: 20px 0;
 }
 .footer a {
-    color: #831111;
-    text-decoration: none;
-    transition: color 0.3s ease;
+    color: #831111; /* Изменение цвета ссылки */
+    text-decoration: none; /* Убираем подчеркивание по умолчанию */
+    transition: color 0.3s ease; /* Плавный переход цвета */
 }
 .footer a:hover {
-    color: #fff;
-}
-
-
-.footer a:hover {
-color:#fff
+    color: #fff; /* Изменение цвета при наведении */
 }
