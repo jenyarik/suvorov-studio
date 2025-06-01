@@ -531,26 +531,29 @@ section h2 {
     letter-spacing: 1px;
 }
 .service-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 10px;
+    display: flex;
+    gap: 20px; /* Расстояние между карточками */
+    overflow-x: hidden; /* Отключаем горизонтальный скролл */
     padding: 10px;
-    text-align: center
 }
+
 .service-card {
+    flex: 1 1 calc(20% - 16px); /* 100% / 5 = 20%, минус учет gap */
+    box-sizing: border-box;
+    min-width: 200px; /* Минимальная ширина для маленьких экранов */
     background-color: #fff;
     border-radius: 12px;
-    box-sizing: border-box;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    height: 350px;
 }
 .service-card p {
     margin-bottom: 0;
+    padding: 15px;
+    flex-grow: 1;
 }
 .service-card:hover {
     transform: translateY(-5px);
@@ -558,10 +561,10 @@ section h2 {
 }
 .service-card img {
     width: 100%;
-    height: 250px;
+    height: auto; /* Сохраняем пропорции */
+    aspect-ratio: 4 / 3; /* Например, фиксируем соотношение сторон (можно убрать, если не нужно) */
     object-fit: cover;
     border-radius: 12px 12px 0 0;
-    display: block;
     flex-shrink: 0;
 }
     .service-header {
