@@ -25,7 +25,7 @@ function addMessage(text, sender) {
 // Функция для обработки сообщений бота
 async function botReply(userMessage) {
     try {
-        const response = await fetch('https://tattoo-studio-bot.onrender.com', {
+        const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
