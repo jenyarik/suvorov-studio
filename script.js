@@ -1,51 +1,66 @@
 $(document).ready(function () {
-    const toggleChat = document.querySelector('.chatbot-toggle');
-    const chatWindow = document.querySelector('.chatbot-window');
-    const closeChat = document.querySelector('.chatbot-close');
-    const inputField = document.getElementById('chatbotInput');
-    const messagesContainer = document.getElementById('chatbotMessages');
+   const toggleChat = document.querySelector('.chatbot-toggle');
+const chatWindow = document.querySelector('.chatbot-window');
+const closeChat = document.querySelector('.chatbot-close');
+const inputField = document.getElementById('chatbotInput');
+const messagesContainer = document.getElementById('chatbotMessages');
 
-    // Открытие/закрытие окна
-    toggleChat.addEventListener('click', () => {
-        chatWindow.classList.toggle('active'); // Используем toggle для открывания/закрывания
-    });
+// Открытие/закрытие окна
+toggleChat.addEventListener('click', () => {
+    chatWindow.classList.toggle('active'); // Используем toggle для открывания/закрывания
+});
+closeChat.addEventListener('click', () => {
+    chatWindow.classList.remove('active');
+});
 
-    closeChat.addEventListener('click', () => {
-        chatWindow.classList.remove('active');
-    });
+// Обработка отправки сообщения
+function addMessage(text, sender) {
+    const msg = document.createElement('div');
+    msg.className = 'message ' + sender;
+    msg.textContent = text;
+    messagesContainer.appendChild(msg);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Прокрутка к последнему сообщению
+}
 
-    // Обработка отправки сообщения
-    function addMessage(text, sender) {
-        const msg = document.createElement('div');
-        msg.className = 'message ' + sender;
-        msg.textContent = text;
-        messagesContainer.appendChild(msg);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Прокрутка к последнему сообщению
-    }
+// Функция для обработки сообщений бота
+async function botReply(userMessage) {
+    try {
+        const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ text: userMessage, userId: 1 }) // Замените userId по необходимости
+        });
 
-    function botReply(userMessage) {
-        setTimeout(() => {
-            addMessage("Пример ответа бота.", "bot");
-        }, 500); // Имитация задержки бота
-    }
-
-    document.querySelector('.chatbot-send').addEventListener('click', () => {
-        const message = inputField.value.trim();
-        if (message) { // Проверка на пустое сообщение
-            addMessage(message, 'user');
-            inputField.value = ''; // Очистка поля ввода
-            botReply(message);
-        } else {
-            alert("Пожалуйста, введите сообщение."); // Сообщение, если ввод пустой
+        if (!response.ok) {
+            throw new Error('Сетевая ошибка при отправке сообщения.');
         }
-    });
 
-    inputField.addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            document.querySelector('.chatbot-send').click();
-        }
-    });
+        const data = await response.json();
+        addMessage(data.response, 'bot'); // Добавление ответа от бота
+    } catch (error) {
+        console.error('Ошибка:', error);
+        addMessage('Произошла ошибка. Попробуйте еще раз.', 'bot');
+    }
+}
 
+document.querySelector('.chatbot-send').addEventListener('click', () => {
+    const message = inputField.value.trim();
+    if (message) { // Проверка на пустое сообщение
+        addMessage(message, 'user');
+        inputField.value = ''; // Очистка поля ввода
+        botReply(message); // Отправка сообщения к боту
+    } else {
+        alert("Пожалуйста, введите сообщение."); // Сообщение, если ввод пустой
+    }
+});
+
+inputField.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        document.querySelector('.chatbot-send').click();
+    }
+});
     // --- Управление карточками услуг ---
     const serviceCards = document.querySelectorAll('.service-card');
 
