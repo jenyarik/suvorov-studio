@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     // Открытие/закрытие окна
     toggleChat.addEventListener('click', () => {
-        chatWindow.classList.add('active');
+        chatWindow.classList.toggle('active'); // Используем toggle для открывания/закрывания
     });
 
     closeChat.addEventListener('click', () => {
@@ -20,21 +20,23 @@ $(document).ready(function () {
         msg.className = 'message ' + sender;
         msg.textContent = text;
         messagesContainer.appendChild(msg);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        messagesContainer.scrollTop = messagesContainer.scrollHeight; // Прокрутка к последнему сообщению
     }
 
     function botReply(userMessage) {
         setTimeout(() => {
             addMessage("Пример ответа бота.", "bot");
-        }, 500);
+        }, 500); // Имитация задержки бота
     }
 
     document.querySelector('.chatbot-send').addEventListener('click', () => {
         const message = inputField.value.trim();
-        if (message !== '') {
+        if (message) { // Проверка на пустое сообщение
             addMessage(message, 'user');
-            inputField.value = '';
+            inputField.value = ''; // Очистка поля ввода
             botReply(message);
+        } else {
+            alert("Пожалуйста, введите сообщение."); // Сообщение, если ввод пустой
         }
     });
 
@@ -58,53 +60,59 @@ $(document).ready(function () {
         });
     });
 
- const mastersContainer = document.querySelector('.masters-container');
-if (mastersContainer) {
-    const modal = document.getElementById('worksModal');
-    const modalMasterName = document.getElementById('modal-master-name');
-    const modalWorksGrid = document.getElementById('modal-works-grid');
-    const closeBtn = document.querySelector('.close');
+    const mastersContainer = document.querySelector('.masters-container');
+    if (mastersContainer) {
+        const modal = document.getElementById('worksModal');
+        const modalMasterName = document.getElementById('modal-master-name');
+        const modalWorksGrid = document.getElementById('modal-works-grid');
+        const closeBtn = document.querySelector('.close');
 
-    // Функция для открытия модального окна
-    function openModal(masterElement) {
-        const masterName = masterElement.dataset.masterName;
-        const worksData = JSON.parse(masterElement.dataset.works);
+        // Функция для открытия модального окна
+        function openModal(masterElement) {
+            const masterName = masterElement.dataset.masterName;
+            const worksData = JSON.parse(masterElement.dataset.works); // Валидация данных
 
-        modalMasterName.textContent = masterName;
-        modalWorksGrid.innerHTML = ''; // Очищаем предыдущие работы
+            if (worksData && worksData.length) { // Проверка на наличие работ
+                modalMasterName.textContent = masterName;
+                modalWorksGrid.innerHTML = ''; // Очищаем предыдущие работы
 
-        worksData.forEach(work => {
-            const img = document.createElement('img');
-            img.src = work;
-            img.alt = `Работа мастера ${masterName}`;
-            modalWorksGrid.appendChild(img);
+                worksData.forEach(work => {
+                    const img = document.createElement('img');
+                    img.src = work;
+                    img.alt = `Работа мастера ${masterName}`;
+                    modalWorksGrid.appendChild(img);
+                });
+                modal.classList.add('show');
+                modal.style.display = 'flex'; // Показываем модальное окно как флекс
+            } else {
+                alert("Нет доступных работ для этого мастера."); // Сообщение, если работ нет
+            }
+        }
+
+        // Функция для закрытия модального окна
+        function closeModal() {
+            modal.classList.remove('show');
+            modal.style.display = 'none'; // Скрываем модальное окно
+        }
+
+        // Обработчик клика для открытия модального окна
+        mastersContainer.addEventListener('click', function(event) {
+            const button = event.target.closest('.show-works-button');
+            if (button) {
+                const masterElement = button.closest('.master');
+                openModal(masterElement);
+            }
         });
-        modal.classList.add('show');
-        modal.style.display = 'flex'; // Показываем модальное окно как флекс
+
+        // Обработчик клика для закрытия модального окна
+        closeBtn.addEventListener('click', closeModal);
+        
+        // Закрытие модального окна при клике вне его
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
     }
-
-    // Функция для закрытия модального окна
-    function closeModal() {
-        modal.classList.remove('show');
-        modal.style.display = 'none'; // Скрываем модальное окно
-    }
-
-    // Обработчик клика для открытия модального окна
-    mastersContainer.addEventListener('click', function(event) {
-        const button = event.target.closest('.show-works-button');
-        if (button) {
-            const masterElement = button.closest('.master');
-            openModal(masterElement);
-        }
-    });
-
-    // Обработчик клика для закрытия модального окна
-    closeBtn.addEventListener('click', closeModal);
-    
-    // Закрытие модального окна при клике вне его
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
 });
+
