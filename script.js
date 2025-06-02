@@ -1,84 +1,80 @@
 $(document).ready(function () {
-   const toggleChat = document.querySelector('.chatbot-toggle');
-const chatWindow = document.querySelector('.chatbot-window');
-const closeChat = document.querySelector('.chatbot-close');
-const inputField = document.getElementById('chatbotInput');
-const messagesContainer = document.getElementById('chatbotMessages');
+    const toggleChat = document.querySelector('.chatbot-toggle');
+    const chatWindow = document.querySelector('.chatbot-window');
+    const closeChat = document.querySelector('.chatbot-close');
+    const inputField = document.getElementById('chatbotInput');
+    const messagesContainer = document.getElementById('chatbotMessages');
+    const sendButton = document.querySelector('.chatbot-send');
 
-// Открытие/закрытие окна
-toggleChat.addEventListener('click', () => {
-    chatWindow.classList.toggle('active'); // Используем toggle для открывания/закрывания
-});
-closeChat.addEventListener('click', () => {
-    chatWindow.classList.remove('active');
-});
+    // Открытие/закрытие окна
+    toggleChat.addEventListener('click', () => {
+        chatWindow.classList.toggle('active');
+    });
+    closeChat.addEventListener('click', () => {
+        chatWindow.classList.remove('active');
+    });
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetch('/init')
-        .then(response => response.json())
-        .then(data => {
-            addMessage(data.response, 'bot'); // Отображаем приветственное сообщение, используя addMessage
-        })
-        .catch(error => {
-            console.error('Ошибка при получении приветственного сообщения:', error);
-        });
-});
-   
-// script.js
-// Обработка отправки сообщения
-function addMessage(text, sender) {
-    const msg = document.createElement('div');
-    msg.className = 'message ' + sender;
-    msg.textContent = text;
-    messagesContainer.appendChild(msg);
-    messagesContainer.scrollTop = messagesContainer.scrollHeight; // Прокрутка к последнему сообщению
-}
+    function addMessage(text, sender) {
+        const msg = document.createElement('div');
+        msg.className = 'message ' + sender;
+        msg.textContent = text;
+        messagesContainer.appendChild(msg);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }
 
-// Функция для обработки сообщений бота
-   function botReply(text) {
-    const chatMessages = document.getElementById('chatbotMessages');
-    const messageElement = document.createElement('div');
-    messageElement.textContent = text;
-    chatMessages.appendChild(messageElement);
-    chatMessages.scrollTop = chatMessages.scrollHeight; // Прокрутка к последнему сообщению
-}
-async function botReply(userMessage) {
-    try {
-        const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ text: userMessage, userId: 1 }) // Замените userId по необходимости
-        });
+    async function botReply(userMessage) {
+        try {
+            const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: userMessage, userId: 1 })
+            });
 
-        if (!response.ok) {
-            throw new Error('Сетевая ошибка при отправке сообщения.');
+            if (!response.ok) {
+                throw new Error('Сетевая ошибка при отправке сообщения.');
+            }
+
+            const data = await response.json();
+            addMessage(data.response, 'bot');
+        } catch (error) {
+            console.error('Ошибка:', error);
+            addMessage('Произошла ошибка. Попробуйте еще раз.', 'bot');
         }
-
-        const data = await response.json();
-        addMessage(data.response, 'bot'); // Добавление ответа от бота
-    } catch (error) {
-        console.error('Ошибка:', error);
-        addMessage('Произошла ошибка. Попробуйте еще раз.', 'bot');
     }
-}
 
-document.querySelector('.chatbot-send').addEventListener('click', () => {
-    const message = inputField.value.trim();
-    if (message) { // Проверка на пустое сообщение
-        addMessage(message, 'user');
-        inputField.value = ''; // Очистка поля ввода
-        botReply(message); // Отправка сообщения к боту
-    } else {
-        alert("Пожалуйста, введите сообщение."); // Сообщение, если ввод пустой
-    }
-});
+    const sendMessage = () => {
+        const message = inputField.value.trim();
+        if (message) {
+            addMessage(message, 'user');
+            inputField.value = '';
+            botReply(message);
+        } else {
+            alert("Пожалуйста, введите сообщение.");
+        }
+    };
 
-inputField.addEventListener('keypress', function (e) {
-    if (e.key === 'Enter') {
-        document.querySelector('.chatbot-send').click();
-    }
+    sendButton.addEventListener('click', sendMessage);
+
+    inputField.addEventListener('keypress', function (e) {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    // Приветственное сообщение
+    const welcomeMessage = `👋 Приветствую! Я Чат-бот "Студия Суворова".
+        Я могу помочь тебе с:
+        - Регистрацией:  /register username email password phone
+        - Входом в систему: /login email password
+        - Просмотром списка мастеров: мастера
+        - Просмотром списка услуг: услуги
+        - Записью на прием: записаться [дата] [время] [мастер] [услуга]
+
+        Чтобы начать, просто введи нужную команду!`;
+
+    addMessage(welcomeMessage, 'bot');
 });
     // --- Управление карточками услуг ---
     const serviceCards = document.querySelectorAll('.service-card');
