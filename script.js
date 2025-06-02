@@ -12,9 +12,14 @@ toggleChat.addEventListener('click', () => {
 closeChat.addEventListener('click', () => {
     chatWindow.classList.remove('active');
 });
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
-    // Отправляем пустое сообщение при загрузке страницы
-    botReply(''); //  Отправляем пустое сообщение (или можно вызвать handleUserMessage('') )
+    const hasOpenedChat = localStorage.getItem('hasOpenedChat');
+
+    if (!hasOpenedChat) {
+        botReply(''); // Отправляем пустое сообщение для получения приветствия
+        localStorage.setItem('hasOpenedChat', 'true'); //  Отмечаем, что чат был открыт
+    }
 });
 // Обработка отправки сообщения
 function addMessage(text, sender) {
