@@ -274,7 +274,7 @@ section {
     padding: 40px; /* Увеличиваем внутренний отступ */
     border: none; /* Убираем рамку */
     border-radius: 0; /* Убираем скругление */
-    background-color: #f9f9f9; /* Светлый фон */
+    background-color: #000; /* Светлый фон */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Легкая тень */
     transition: all 0.3s ease; /* Плавный переход для анимации */
 }
