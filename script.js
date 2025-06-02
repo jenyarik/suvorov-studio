@@ -12,7 +12,10 @@ toggleChat.addEventListener('click', () => {
 closeChat.addEventListener('click', () => {
     chatWindow.classList.remove('active');
 });
-
+document.addEventListener('DOMContentLoaded', () => {
+    // Отправляем пустое сообщение при загрузке страницы
+    botReply(''); //  Отправляем пустое сообщение (или можно вызвать handleUserMessage('') )
+});
 // Обработка отправки сообщения
 function addMessage(text, sender) {
     const msg = document.createElement('div');
