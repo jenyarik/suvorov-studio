@@ -12,15 +12,20 @@ toggleChat.addEventListener('click', () => {
 closeChat.addEventListener('click', () => {
     chatWindow.classList.remove('active');
 });
-// script.js
-document.addEventListener('DOMContentLoaded', () => {
-    const hasOpenedChat = localStorage.getItem('hasOpenedChat');
 
-    if (!hasOpenedChat) {
-        botReply(''); // Отправляем пустое сообщение для получения приветствия
-        localStorage.setItem('hasOpenedChat', 'true'); //  Отмечаем, что чат был открыт
-    }
+document.addEventListener('DOMContentLoaded', () => {
+    // Отправляем запрос на /init при загрузке страницы
+    fetch('/init')
+        .then(response => response.json())
+        .then(data => {
+            botReply(data.response); // Отображаем приветственное сообщение
+        })
+        .catch(error => {
+            console.error('Ошибка при получении приветственного сообщения:', error);
+        });
 });
+   
+// script.js
 // Обработка отправки сообщения
 function addMessage(text, sender) {
     const msg = document.createElement('div');
