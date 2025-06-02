@@ -14,11 +14,10 @@ closeChat.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Отправляем запрос на /init при загрузке страницы
     fetch('/init')
         .then(response => response.json())
         .then(data => {
-            botReply(data.response); // Отображаем приветственное сообщение
+            addMessage(data.response, 'bot'); // Отображаем приветственное сообщение, используя addMessage
         })
         .catch(error => {
             console.error('Ошибка при получении приветственного сообщения:', error);
@@ -36,6 +35,13 @@ function addMessage(text, sender) {
 }
 
 // Функция для обработки сообщений бота
+   function botReply(text) {
+    const chatMessages = document.getElementById('chatbotMessages');
+    const messageElement = document.createElement('div');
+    messageElement.textContent = text;
+    chatMessages.appendChild(messageElement);
+    chatMessages.scrollTop = chatMessages.scrollHeight; // Прокрутка к последнему сообщению
+}
 async function botReply(userMessage) {
     try {
         const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
