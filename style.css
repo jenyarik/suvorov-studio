@@ -376,6 +376,7 @@ section h2 {
     }
 }
 
+/* Общие стили мастера (без изменений) */
 .masters {
     padding: 20px;
     text-align: center;
@@ -384,72 +385,73 @@ section h2 {
 }
 
 .masters-container {
-  display: flex;
-  flex-direction: column; /* мастера идут в столбик */
-  gap: 40px; /* расстояние между мастерами */
-  max-width: 900px; /* ограничение ширины контейнера */
-  margin: 0 auto; /* по центру */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .master-wrapper {
-  display: flex;
-  gap: 30px;
-  align-items: flex-start;
-  border: 1px solid #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: all 0.3s ease;
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    border: 1px solid #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 .master-wrapper:hover {
-  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-  transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
 }
 
 .master {
-  flex: 0 0 300px; /* фиксированная ширина слева */
-  text-align: center;
-  padding: 0; /* убираем внутренние отступы, чтобы не дублировать */
-  box-shadow: none; /* убираем тень, т.к. у wrapper */
-  border: none;
+    flex: 0 0 300px;
+    text-align: center;
+    padding: 0;
+    box-shadow: none;
+    border: none;
 }
 
 .master img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px 10px 0 0;
-  object-fit: cover;
-  margin-bottom: 15px;
+    width: 100%;
+    height: auto;
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+    margin-bottom: 15px;
 }
 
 .master h3 {
-  margin-bottom: 5px;
-  color: #333;
+    margin-bottom: 5px;
+    color: #333;
 }
 
 .master p {
-  font-size: 0.9em;
-  color: #666;
+    font-size: 0.9em;
+    color: #666;
 }
 
 .master-info {
-  flex: 1; /* занимает оставшееся место справа */
-  font-size: 1em;
-  color: #444;
+    flex: 1;
+    font-size: 1em;
+    color: #444;
 }
 
 .master-info h4 {
-  margin-bottom: 10px;
-  color: #222;
+    margin-bottom: 10px;
+    color: #222;
 }
 
 .master-info p {
-  margin-bottom: 8px;
-  line-height: 1.4;
+    margin-bottom: 8px;
+    line-height: 1.4;
 }
+
 .show-works-button {
-    background-color: #5c1212; /* Зеленый */
+    background-color: #5c1212;
     border: none;
     color: white;
     padding: 12px 24px;
@@ -462,27 +464,32 @@ section h2 {
     border-radius: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 .show-works-button:hover {
-    background-color: #731a1a; /* Более темный зеленый */
+    background-color: #731a1a;
     transform: scale(1.05);
 }
-.modal.show {
-    display: block;
-    opacity: 1;
-}
+
+/* Стили модального окна */
 .modal {
     display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 30%;
+    position: fixed; /* Важно: делаем модальное окно фиксированным */
+    top: 0;          /* Прикрепляем к верхнему краю экрана */
+    left: 0;         /* Прикрепляем к левому краю экрана */
+    width: 100%;      /* Занимает всю ширину */
+    height: 100%;     /* Занимает всю высоту */
     background-color: rgba(0, 0, 0, 0.8);
     z-index: 1000;
-    /* Добавляем position: relative, чтобы создать новый контекст наложения */
-    position: relative;
-    overflow: auto;
+    overflow: auto; /* Добавляем прокрутку, если контент не помещается */
+    align-items: center; /* Центрируем модальное окно по вертикали */
+    justify-content: center; /* Центрируем модальное окно по горизонтали */
 }
+
+.modal.show {
+    display: flex; /* Меняем на flex для центрирования */
+    opacity: 1;
+}
+
 .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -491,50 +498,94 @@ section h2 {
     border: 1px solid #888;
     width: 80%;
     max-width: 800px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
 }
-@keyframes slideIn {
+
+@keyframes animatetop {
     from {
-        transform: translateY(-50px);
+        top: -300px;
         opacity: 0;
     }
+
     to {
-        transform: translateY(0);
+        top: 0;
         opacity: 1;
     }
 }
+
 .close {
     position: absolute;
     top: 20px;
     right: 20px;
-    font-size: 40px; /* Увеличили размер */
+    font-size: 40px;
     font-weight: bold;
     cursor: pointer;
-    color: #aaa; /* Светло-серый цвет */
+    color: #aaa;
     transition: color 0.3s ease;
 }
+
 .close:hover {
     color: #000000;
 }
 
-/* Стили для работ мастеров */
-.works-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    padding: 10px; /* Добавили отступы */
+/* Стили для карусели (можно настроить по своему вкусу) */
+.carousel {
+    overflow: hidden;
+    position: relative;
 }
-.works-grid img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease; /* Добавили анимацию при наведении */
+
+.carousel-body {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* Анимация при переключении слайдов */
 }
-.works-grid img:hover {
-    transform: scale(2.4); /* Небольшое увеличение при наведении */
+
+.carousel-slide {
+    flex: 0 0 100%; /* Каждый слайд занимает всю ширину контейнера */
+    width: 100%;      /* Важно для правильной работы flexbox */
+    height: 100%;
+    display: flex;
+    justify-content: center; /* Центрируем изображение по горизонтали */
+    align-items: center;    /* Центрируем изображение по вертикали */
+}
+
+.carousel-slide img {
+    max-width: 100%;   /* Изображение не выходит за пределы слайда */
+    max-height: 100%;  /* Изображение не выходит за пределы слайда */
+    object-fit: contain; /* Сохраняем пропорции изображения */
+}
+
+.carousel-prev,
+.carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10; /* Чтобы кнопки были над слайдами */
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
+
+.carousel-info {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 
