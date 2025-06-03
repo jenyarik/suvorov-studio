@@ -384,47 +384,69 @@ section h2 {
 }
 
 .masters-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    padding-bottom: 20px;
-    gap: 30px; /* Отступ между мастерами */
-    flex-wrap: nowrap; /* Элементы в ряд */
-    overflow-x: hidden; /* Защита от случайного скролла */
+  display: flex;
+  flex-direction: column; /* мастера идут в столбик */
+  gap: 40px; /* расстояние между мастерами */
+  max-width: 900px; /* ограничение ширины контейнера */
+  margin: 0 auto; /* по центру */
+}
+
+.master-wrapper {
+  display: flex;
+  gap: 30px;
+  align-items: flex-start;
+  border: 1px solid #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.master-wrapper:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transform: translateY(-3px);
 }
 
 .master {
-    text-align: center;
-    padding: 20px;
-    border: 1px solid #ffffff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-    border-radius: 10px;
-    flex: 0 0 auto; /* Фиксируем размеры */
-    width: calc(25% - 30px); /* Расчёт для 4 элементов с gap */
-    max-width: 300px; /* Ограничение по ширине */
-    box-sizing: border-box;
-}
-
-.master:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  flex: 0 0 300px; /* фиксированная ширина слева */
+  text-align: center;
+  padding: 0; /* убираем внутренние отступы, чтобы не дублировать */
+  box-shadow: none; /* убираем тень, т.к. у wrapper */
+  border: none;
 }
 
 .master img {
-    width: 100%; /* Растягиваем под родителя */
-    height: auto;
-    border-radius: 0;
-    object-fit: cover;
-    margin-bottom: 15px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px 10px 0 0;
+  object-fit: cover;
+  margin-bottom: 15px;
 }
+
 .master h3 {
-    margin-bottom: 5px;
-    color: #333;
+  margin-bottom: 5px;
+  color: #333;
 }
+
 .master p {
-    font-size: 0.9em;
-    color: #666;
+  font-size: 0.9em;
+  color: #666;
+}
+
+.master-info {
+  flex: 1; /* занимает оставшееся место справа */
+  font-size: 1em;
+  color: #444;
+}
+
+.master-info h4 {
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.master-info p {
+  margin-bottom: 8px;
+  line-height: 1.4;
 }
 .show-works-button {
     background-color: #5c1212; /* Зеленый */
