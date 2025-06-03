@@ -180,17 +180,6 @@
     <p>Алексей — специалист по минималистичным и геометрическим татуировкам. Его стиль — чистые линии, простые формы и глубокий смысл. Работы Алексея отлично подходят для тех, кто ценит лаконичность и современный дизайн.</p>
   </div>
 </div>
-
-       
-    <div id="worksModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Примеры работ мастера <span id="modal-master-name"></span></h2>
-            <div class="works-grid" id="modal-works-grid">
-                <!-- Сюда будут добавляться работы -->
-            </div>
-        </div>
-    </div>
 </section>
 
 
@@ -252,6 +241,36 @@
 
 </section>
 
+<div id="worksModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Примеры работ мастера <span id="modal-master-name"></span></h2>
+
+    <div id="worksCarousel" data-carousel='{ "loadingClasses": "opacity-0", "isInfiniteLoop": true, "slidesQty": 1 }' class="relative w-full">
+      <div class="carousel h-80">
+        <div class="carousel-body h-full opacity-0" id="modal-works-carousel-body">
+          <!-- Сюда будут добавляться слайды с работами -->
+        </div>
+      </div>
+
+      <!-- Кнопки навигации (предыдущий/следующий) -->
+      <button type="button" class="carousel-prev start-5 max-sm:start-3 carousel-disabled:opacity-50 size-9.5 bg-base-100 flex items-center justify-center rounded-full shadow-base-300/20 shadow-sm">
+        <span class="icon-[tabler--chevron-left] size-5 cursor-pointer"></span>
+        <span class="sr-only">Предыдущий</span>
+      </button>
+      <button type="button" class="carousel-next end-5 max-sm:end-3 carousel-disabled:opacity-50 size-9.5 bg-base-100 flex items-center justify-center rounded-full shadow-base-300/20 shadow-sm">
+        <span class="icon-[tabler--chevron-right] size-5"></span>
+        <span class="sr-only">Следующий</span>
+      </button>
+      <div class="carousel-info absolute bottom-3 start-[50%] inline-flex -translate-x-[50%] justify-center rounded-lg bg-base-100 px-4">
+        <span class="carousel-info-current me-1">0</span>
+        /
+        <span class="carousel-info-total ms-1">0</span>
+      </div>
+    </div>
+  </div>
+</div>
+    
     
 <footer class="footer" id="contacts">
     <div class="footer-content">
