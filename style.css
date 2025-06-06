@@ -850,7 +850,7 @@ h2 {
     position: absolute;
     bottom: 100%;
     left: 0;
-    width: calc(106% - 20px);
+    width: calc(100% - 10px);
     background-color: #fff;
     padding: 10px;
     border-radius: 12px;
@@ -862,6 +862,7 @@ h2 {
     word-wrap: break-word;
     overflow-wrap: break-word;
     box-sizing: border-box;
+    min-width: 230px;
 }
 .service-card.active .service-content {
     transform: translateY(100%); /*  Контент показывается, только когда карточка активна */
