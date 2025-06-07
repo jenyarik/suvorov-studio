@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
             displayBotMessage(data.response);
         } catch (error) {
             console.error('Ошибка:', error);
-            displayErrorMessage('Произошла ошибка. Попробуйте еще раз.', 'bot');
+            displayErrorMessage('Произошла ошибка. Попробуйте еще раз.');
         }
     }
 
@@ -101,130 +101,130 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
     });
 }); // **1. Обертка DOMContentLoaded (конец)**
 
-    // --- Управление карточками услуг ---
-    const serviceCards = document.querySelectorAll('.service-card');
+// --- Управление карточками услуг ---
+const serviceCards = document.querySelectorAll('.service-card');
 
-    serviceCards.forEach(card => {
-        const header = card.querySelector('.service-header');
-        const content = card.querySelector('.service-content');
+serviceCards.forEach(card => {
+    const header = card.querySelector('.service-header');
+    const content = card.querySelector('.service-content');
 
-        // Обработчик клика по заголовку
-        header.addEventListener('click', function () {
-            card.classList.toggle('active');
-            content.classList.toggle('active');
+    // Обработчик клика по заголовку
+    header.addEventListener('click', function () {
+        card.classList.toggle('active');
+        content.classList.toggle('active');
+    });
+});
+
+// **2. Удалите `document.addEventListener('DOMContentLoaded', function() {`  и `});`  вокруг кода модального окна.**  Весь код модального окна должен быть здесь, внутри _одного_ `DOMContentLoaded`.
+
+const mastersContainer = document.querySelector('.masters-container');
+const modal = document.getElementById('worksModal');
+const modalMasterName = document.getElementById('modal-master-name');
+const modalWorksCarouselBody = document.getElementById('modal-works-carousel-body');
+const closeBtn = document.querySelector('.close');
+const carouselPrevBtn = modal.querySelector('.carousel-prev');
+const carouselNextBtn = modal.querySelector('.carousel-next');
+const carouselInfoCurrent = modal.querySelector('.carousel-info-current');
+const carouselInfoTotal = modal.querySelector('.carousel-info-total');
+
+let currentSlide = 0;
+let slides = [];
+
+// Функция для открытия модального окна
+function openModal(masterElement) {
+    console.log('openModal() вызывается'); // Проверяем, вызывается ли функция
+    const masterName = masterElement.dataset.masterName;
+    const worksData = JSON.parse(masterElement.dataset.works);
+
+    console.log('masterName:', masterName); // Проверяем имя мастера
+    console.log('worksData:', worksData); // Проверяем данные о работах
+
+    if (worksData && worksData.length) {
+        modalMasterName.textContent = masterName;
+        modalWorksCarouselBody.innerHTML = ''; // Очищаем предыдущие слайды
+        slides = []; // Очищаем массив слайдов
+
+        worksData.forEach(work => {
+            const slide = document.createElement('div');
+            slide.classList.add('carousel-slide');
+
+            const img = document.createElement('img');
+            img.src = work;
+            img.alt = `Работа мастера ${masterName}`;
+
+            slide.appendChild(img);
+            modalWorksCarouselBody.appendChild(slide);
+            slides.push(slide);
         });
-    });
 
-    // **2. Удалите `document.addEventListener('DOMContentLoaded', function() {`  и `});`  вокруг кода модального окна.**  Весь код модального окна должен быть здесь, внутри _одного_ `DOMContentLoaded`.
-
-    const mastersContainer = document.querySelector('.masters-container');
-    const modal = document.getElementById('worksModal');
-    const modalMasterName = document.getElementById('modal-master-name');
-    const modalWorksCarouselBody = document.getElementById('modal-works-carousel-body');
-    const closeBtn = document.querySelector('.close');
-    const carouselPrevBtn = modal.querySelector('.carousel-prev');
-    const carouselNextBtn = modal.querySelector('.carousel-next');
-    const carouselInfoCurrent = modal.querySelector('.carousel-info-current');
-    const carouselInfoTotal = modal.querySelector('.carousel-info-total');
-
-    let currentSlide = 0;
-    let slides = [];
-
-    // Функция для открытия модального окна
-    function openModal(masterElement) {
-        console.log('openModal() вызывается'); // Проверяем, вызывается ли функция
-        const masterName = masterElement.dataset.masterName;
-        const worksData = JSON.parse(masterElement.dataset.works);
-
-        console.log('masterName:', masterName); // Проверяем имя мастера
-        console.log('worksData:', worksData); // Проверяем данные о работах
-
-        if (worksData && worksData.length) {
-            modalMasterName.textContent = masterName;
-            modalWorksCarouselBody.innerHTML = ''; // Очищаем предыдущие слайды
-            slides = []; // Очищаем массив слайдов
-
-            worksData.forEach(work => {
-                const slide = document.createElement('div');
-                slide.classList.add('carousel-slide');
-
-                const img = document.createElement('img');
-                img.src = work;
-                img.alt = `Работа мастера ${masterName}`;
-
-                slide.appendChild(img);
-                modalWorksCarouselBody.appendChild(slide);
-                slides.push(slide);
-            });
-
-            currentSlide = 0;
-            updateCarousel();
-            updateCarouselInfo();
-
-            // **3. Добавьте проверку на существование modal**
-            if (!modal) {
-                console.error("Элемент с ID 'worksModal' не найден!");
-                return; // Прекращаем выполнение функции
-            }
-
-            modal.classList.add('show');
-            modal.style.display = 'flex';
-
-            // Обновляем общее количество слайдов
-            carouselInfoTotal.textContent = slides.length;
-
-        } else {
-            alert("Нет доступных работ для этого мастера.");
-        }
-    }
-
-    // Функция для закрытия модального окна
-    function closeModal() {
-        modal.classList.remove('show');
-        modal.style.display = 'none';
-    }
-
-    // Функция для отображения текущего слайда
-    function updateCarousel() {
-        const translateX = -currentSlide * 100 + '%';
-        modalWorksCarouselBody.style.transform = 'translateX(' + translateX + ')';
+        currentSlide = 0;
+        updateCarousel();
         updateCarouselInfo();
-    }
 
-    // Функция для обновления информации о текущем слайде
-    function updateCarouselInfo() {
-        carouselInfoCurrent.textContent = currentSlide + 1;
-    }
-
-    // Обработчики событий для кнопок карусели
-    carouselPrevBtn.addEventListener('click', function () {
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        updateCarousel();
-    });
-
-    carouselNextBtn.addEventListener('click', function () {
-        currentSlide = (currentSlide + 1) % slides.length;
-        updateCarousel();
-    });
-
-    // Обработчик клика для открытия модального окна
-    mastersContainer.addEventListener('click', function (event) {
-        console.log('Клик по mastersContainer'); // Проверяем, что клик вообще регистрируется
-        const button = event.target.closest('.show-works-button');
-        if (button) {
-            console.log('Кнопка "Посмотреть работы" найдена'); // Проверяем, что кнопка найдена
-            const masterElement = button.closest('.master');
-            console.log('masterElement:', masterElement); // Проверяем, что элемент мастера найден
-            openModal(masterElement);
+        // **3. Добавьте проверку на существование modal**
+        if (!modal) {
+            console.error("Элемент с ID 'worksModal' не найден!");
+            return; // Прекращаем выполнение функции
         }
-    });
 
-    // Обработчик клика для закрытия модального окна
-    closeBtn.addEventListener('click', closeModal);
+        modal.classList.add('show');
+        modal.style.display = 'flex';
 
-    // Закрытие модального окна при клике вне его
-    window.addEventListener('click', function (event) {
-        if (event.target === modal) {
-            closeModal();
-        }
-    });
+        // Обновляем общее количество слайдов
+        carouselInfoTotal.textContent = slides.length;
+
+    } else {
+        alert("Нет доступных работ для этого мастера.");
+    }
+}
+
+// Функция для закрытия модального окна
+function closeModal() {
+    modal.classList.remove('show');
+    modal.style.display = 'none';
+}
+
+// Функция для отображения текущего слайда
+function updateCarousel() {
+    const translateX = -currentSlide * 100 + '%';
+    modalWorksCarouselBody.style.transform = 'translateX(' + translateX + ')';
+    updateCarouselInfo();
+}
+
+// Функция для обновления информации о текущем слайде
+function updateCarouselInfo() {
+    carouselInfoCurrent.textContent = currentSlide + 1;
+}
+
+// Обработчики событий для кнопок карусели
+carouselPrevBtn.addEventListener('click', function () {
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    updateCarousel();
+});
+
+carouselNextBtn.addEventListener('click', function () {
+    currentSlide = (currentSlide + 1) % slides.length;
+    updateCarousel();
+});
+
+// Обработчик клика для открытия модального окна
+mastersContainer.addEventListener('click', function (event) {
+    console.log('Клик по mastersContainer'); // Проверяем, что клик вообще регистрируется
+    const button = event.target.closest('.show-works-button');
+    if (button) {
+        console.log('Кнопка "Посмотреть работы" найдена'); // Проверяем, что кнопка найдена
+        const masterElement = button.closest('.master');
+        console.log('masterElement:', masterElement); // Проверяем, что элемент мастера найден
+        openModal(masterElement);
+    }
+});
+
+// Обработчик клика для закрытия модального окна
+closeBtn.addEventListener('click', closeModal);
+
+// Закрытие модального окна при клике вне его
+window.addEventListener('click', function (event) {
+    if (event.target === modal) {
+        closeModal();
+    }
+});
