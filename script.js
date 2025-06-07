@@ -44,21 +44,23 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
         addMessage(`Ошибка: ${message}`, 'bot'); // Используем addMessage для отображения ошибки
     }
 
-   async function botReply(userMessage) {
+  async function botReply(userMessage) {
     try {
         const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ text: userMessage }) // без userId
+            body: JSON.stringify({ text: userMessage }) // отправляем только текст
         });
+
         if (!response.ok) {
             throw new Error('Сетевая ошибка при отправке сообщения.');
         }
+
         const data = await response.json();
-        displayBotMessage(data.response);
+        displayBotMessage(data.response); // функция для отображения ответа бота
     } catch (error) {
         console.error('Ошибка:', error);
-        displayErrorMessage('Произошла ошибка. Попробуйте еще раз.');
+        displayErrorMessage('Произошла ошибка. Попробуйте еще раз.'); // функция для отображения ошибок
     }
 }
 
