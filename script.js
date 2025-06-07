@@ -28,27 +28,36 @@ document.getElementById('openFormButton').addEventListener('click', () => {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    async function botReply(userMessage) {
-        try {
-            const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: userMessage, userId: 1 })
-            });
+    async function botReply(messageText) {
+    const userId = getLoggedInUserId(); //  Функция, которая возвращает ID вошедшего пользователя
 
-            if (!response.ok) {
-                throw new Error('Сетевая ошибка при отправке сообщения.');
-            }
+    console.log("Отправляем сообщение:", messageText, "от пользователя:", userId);
 
-            const data = await response.json();
-            addMessage(data.response, 'bot');
-        } catch (error) {
-            console.error('Ошибка:', error);
-            addMessage('Произошла ошибка. Попробуйте еще раз.', 'bot');
+    try {
+        const response = await fetch('/api/message', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ text: messageText, userId: userId })
+        });
+
+        console.log("Статус ответа:", response.status);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const data = await response.json();
+        console.log("Получен ответ:", data);
+
+        displayBotMessage(data.response); //  Выводим сообщение от бота
+
+    } catch (error) {
+        console.error('Ошибка при отправке сообщения:', error);
+        displayErrorMessage('Ошибка при отправке сообщения.'); //  Выводим сообщение об ошибке
     }
+}
 
     const sendMessage = () => {
         const message = inputField.value.trim();
