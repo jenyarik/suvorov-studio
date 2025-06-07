@@ -6,13 +6,15 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
     const messagesContainer = document.getElementById('chatbotMessages');
     const sendButton = document.querySelector('.chatbot-send');
 
+    // Открытие/закрытие окна
     toggleChat.addEventListener('click', () => {
         chatWindow.classList.toggle('active');
     });
 
-    document.getElementById('openFormButton').addEventListener('click', () => {
-        toggleChat.click();
-    });
+// Теперь добавим обработчик для кнопки
+document.getElementById('openFormButton').addEventListener('click', () => {
+    toggleChat.click(); // имитируем клик по иконке
+});
 
     closeChat.addEventListener('click', () => {
         chatWindow.classList.remove('active');
@@ -26,44 +28,25 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
-    // Функция для получения ID вошедшего пользователя из localStorage
-    function getLoggedInUserId() {
-        const userId = localStorage.getItem('loggedInUserId');
-        console.log("getLoggedInUserId:", userId); // Для отладки
-        return userId;
-    }
-
-    // Функция для отображения сообщения от бота
-    function displayBotMessage(message) {
-        addMessage(message, 'bot'); // Используем addMessage для отображения сообщения от бота
-    }
-
-    // Функция для отображения сообщения об ошибке
-    function displayErrorMessage(message) {
-        addMessage(`Ошибка: ${message}`, 'bot'); // Используем addMessage для отображения ошибки
-    }
-
-    async function botReply(messageText) {
-        const userId = getLoggedInUserId();
-        console.log("Отправляем сообщение:", messageText, "от пользователя:", userId);
+    async function botReply(userMessage) {
         try {
-            const response = await fetch('/api/message', {
+            const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text: messageText, userId: userId })
+                body: JSON.stringify({ text: userMessage, userId: 1 })
             });
-            console.log("Статус ответа:", response.status);
+
             if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+                throw new Error('Сетевая ошибка при отправке сообщения.');
             }
+
             const data = await response.json();
-            console.log("Получен ответ:", data);
-            displayBotMessage(data.response);
+            addMessage(data.response, 'bot');
         } catch (error) {
-            console.error('Ошибка при отправке сообщения:', error);
-            displayErrorMessage('Ошибка при отправке сообщения.'); //  Выводим сообщение об ошибке
+            console.error('Ошибка:', error);
+            addMessage('Произошла ошибка. Попробуйте еще раз.', 'bot');
         }
     }
 
@@ -88,18 +71,21 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
 
     const welcomeMessage = `👋 Приветствую! Я Чат-бот "Студии Суворова". 
 Вот команды с которыми я могу помочь тебе:
-- Регистрацией: зарегистрироваться [имя пользователя], [email] [пароль] [телефон]
+- Регистрацией: зарегистрироваться [имя пользователя] [email] [пароль] [телефон]
 - Входом в систему: войти [email] [пароль]
 - Просмотром списка мастеров: мастера
 - Просмотром списка услуг: услуги
-- Записью на прием: записаться [дата] [время], [мастер], [услуга]
+- Записью на прием: записаться [дата] [время] [мастер] [услуга]
 Будь внимателен и вводи данные корректно, следуя примерам.
 Чтобы начать, просто введи нужную команду!`;
+
+    // Разделяем сообщение на массив строк по символу переноса строки (\n)
     const welcomeLines = welcomeMessage.split('\n');
+
+    // Добавляем каждую строку как отдельное сообщение
     welcomeLines.forEach(line => {
         addMessage(line, 'bot');
     });
-}); 
 
 
     // --- Управление карточками услуг ---
