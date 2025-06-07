@@ -229,4 +229,3 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
             closeModal();
         }
     });
-}); // **4. Закрытие обертки DOMContentLoaded (конец)**
