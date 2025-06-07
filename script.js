@@ -11,10 +11,9 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
         chatWindow.classList.toggle('active');
     });
 
-// Теперь добавим обработчик для кнопки
-document.getElementById('openFormButton').addEventListener('click', () => {
-    toggleChat.click(); // имитируем клик по иконке
-});
+    document.getElementById('openFormButton').addEventListener('click', () => {
+        toggleChat.click(); // имитируем клик по иконке
+    });
 
     closeChat.addEventListener('click', () => {
         chatWindow.classList.remove('active');
@@ -28,14 +27,32 @@ document.getElementById('openFormButton').addEventListener('click', () => {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
 
+    // Функция для получения ID вошедшего пользователя из localStorage
+    function getLoggedInUserId() {
+        const userId = localStorage.getItem('loggedInUserId');
+        console.log("getLoggedInUserId:", userId); // Для отладки
+        return userId;
+    }
+
+    // Функция для отображения сообщения от бота
+    function displayBotMessage(message) {
+        addMessage(message, 'bot'); // Используем addMessage для отображения сообщения от бота
+    }
+
+    // Функция для отображения сообщения об ошибке
+    function displayErrorMessage(message) {
+        addMessage(`Ошибка: ${message}`, 'bot'); // Используем addMessage для отображения ошибки
+    }
+
     async function botReply(userMessage) {
+        const userId = getLoggedInUserId(); //  Получаем userId из localStorage
         try {
             const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ text: userMessage, userId: 1 })
+                body: JSON.stringify({ text: userMessage, userId: userId }) //  <--  Используем userId из localStorage
             });
 
             if (!response.ok) {
@@ -43,10 +60,10 @@ document.getElementById('openFormButton').addEventListener('click', () => {
             }
 
             const data = await response.json();
-            addMessage(data.response, 'bot');
+            displayBotMessage(data.response);
         } catch (error) {
             console.error('Ошибка:', error);
-            addMessage('Произошла ошибка. Попробуйте еще раз.', 'bot');
+            displayErrorMessage('Произошла ошибка. Попробуйте еще раз.', 'bot');
         }
     }
 
@@ -78,15 +95,11 @@ document.getElementById('openFormButton').addEventListener('click', () => {
 - Записью на прием: записаться [дата] [время] [мастер] [услуга]
 Будь внимателен и вводи данные корректно, следуя примерам.
 Чтобы начать, просто введи нужную команду!`;
-
-    // Разделяем сообщение на массив строк по символу переноса строки (\n)
     const welcomeLines = welcomeMessage.split('\n');
-
-    // Добавляем каждую строку как отдельное сообщение
     welcomeLines.forEach(line => {
         addMessage(line, 'bot');
     });
-
+}); // **1. Обертка DOMContentLoaded (конец)**
 
     // --- Управление карточками услуг ---
     const serviceCards = document.querySelectorAll('.service-card');
