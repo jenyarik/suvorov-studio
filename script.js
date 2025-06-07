@@ -215,3 +215,4 @@ document.getElementById('openFormButton').addEventListener('click', () => {
             closeModal();
         }
     });
+});
