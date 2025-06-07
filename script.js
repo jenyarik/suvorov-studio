@@ -93,7 +93,6 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
         - Просмотром списка мастеров: мастера
         - Просмотром списка услуг: услуги
         - Записью на прием: записаться [дата] [время], [мастер,услуга]
-        
         Чтобы начать, просто введи нужную команду!`;
     const welcomeLines = welcomeMessage.split('\n');
     welcomeLines.forEach(line => {
