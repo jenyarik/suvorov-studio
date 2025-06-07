@@ -44,28 +44,23 @@ document.addEventListener('DOMContentLoaded', function () { // **1. Обертк
         addMessage(`Ошибка: ${message}`, 'bot'); // Используем addMessage для отображения ошибки
     }
 
-    async function botReply(userMessage) {
-        const userId = getLoggedInUserId(); //  Получаем userId из localStorage
-        try {
-            const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ text: userMessage, userId: userId }) //  <--  Используем userId из localStorage
-            });
-
-            if (!response.ok) {
-                throw new Error('Сетевая ошибка при отправке сообщения.');
-            }
-
-            const data = await response.json();
-            displayBotMessage(data.response);
-        } catch (error) {
-            console.error('Ошибка:', error);
-            displayErrorMessage('Произошла ошибка. Попробуйте еще раз.');
+   async function botReply(userMessage) {
+    try {
+        const response = await fetch('https://tattoo-studio-bot.onrender.com/api/message', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ text: userMessage }) // без userId
+        });
+        if (!response.ok) {
+            throw new Error('Сетевая ошибка при отправке сообщения.');
         }
+        const data = await response.json();
+        displayBotMessage(data.response);
+    } catch (error) {
+        console.error('Ошибка:', error);
+        displayErrorMessage('Произошла ошибка. Попробуйте еще раз.');
     }
+}
 
     const sendMessage = () => {
         const message = inputField.value.trim();
