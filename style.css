@@ -1,8 +1,8 @@
 /* Общие стили */
-/* Глобальные стили для заголовков */
+/* Глобальные стили для заголовков, использующие Jost Italic 700 */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display SC', sans-serif;
-    font-weight: 700;
+    font-family: 'Playfair Display SC', sans-serif; /* Используем Playfair Display SC */
+    font-weight: 700; /* Задаем жирность 700 */
 }
 
 body {
@@ -11,17 +11,7 @@ body {
     color: #333;
     background-color: #000;
     background-size: cover;
-}
-
-/* Общие стили ссылок */
-a {
-    color: #5c1212;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #fff;
+    /* Убираем padding и используем media queries для адаптации отступов */
 }
 
 /* Стили шапки */
@@ -52,10 +42,17 @@ header {
 
 /* Стили навигации */
 header nav a {
-    display: inline-block; /*Чтобы ::after занимал всю ширину*/
+    color: #fff;
+    text-decoration: none;
     margin: 0 15px;
     font-size: 1.2em;
     position: relative;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+header nav a:hover {
+    color: #5c1212;
+    transform: translateY(-3px);
 }
 
 header nav a::after {
@@ -76,10 +73,6 @@ header nav a:hover::after {
     transform-origin: left;
 }
 
-header nav a:hover {
-    transform: translateY(-3px);
-}
-
 /* Стили для баннера */
 .banner {
     position: relative;
@@ -87,6 +80,7 @@ header nav a:hover {
     color: white;
     margin: 0;
     padding: 0;
+    box-shadow: none;
     transition: none;
 }
 
@@ -108,16 +102,17 @@ header nav a:hover {
     padding: 20px 27px;
     background-color: #5c1212;
     color: #fff;
+    text-decoration: none;
     text-transform: uppercase;
     font-size: 0.9em;
     font-weight: bold;
     letter-spacing: 1px;
     border-radius: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
     position: relative;
     overflow: hidden;
     border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .button:hover {
@@ -147,7 +142,7 @@ header nav a:hover {
 }
 
 
-/* === Стили для чат-бота === */
+/* === Стили для чат-бота - отдельная зона, не конфликтует === */
 .chatbot-toggle {
     position: fixed;
     bottom: 20px;
@@ -164,7 +159,7 @@ header nav a:hover {
     cursor: pointer;
     z-index: 9999;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease, background-color 0.3s ease; /*Добавил transition для background-color*/
+    transition: transform 0.2s ease;
 }
 
 .chatbot-toggle:hover {
@@ -281,7 +276,7 @@ header nav a:hover {
 section {
     margin-top: 10px;
     margin-bottom: 15px;
-    padding: 50px;
+    padding: 50px; /* Уменьшаем общий отступ */
     background-color: #fff;
     overflow: hidden;
 }
@@ -696,7 +691,8 @@ h2 {
 }
 
 .master-certificat .master-certificates-table td a {
-    /* Используем общие стили для ссылок a */
+    color: #5c1212;
+    text-decoration: none;
 }
 
 .master-certificat .master-certificates-table td a:hover {
@@ -749,14 +745,14 @@ h2 {
 
 .service-container {
     display: flex;
-    gap: 20px;
-    overflow-x: auto;
+    gap: 20px; /* Расстояние между карточками */
+    overflow-x: auto; /* Горизонтальный скролл для карточек услуг */
     padding: 10px;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: x mandatory; /* Привязка к карточкам при скролле */
 }
 
 .service-card {
-    flex: 0 0 80%;
+    flex: 0 0 80%; /* Занимает 80% ширины контейнера */
     box-sizing: border-box;
     min-width: 200px;
     background-color: #fff;
@@ -767,7 +763,7 @@ h2 {
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    scroll-snap-align: start;
+    scroll-snap-align: start; /* Привязка к началу карточки */
 }
 
 .service-card p {
@@ -861,12 +857,21 @@ h2 {
     position: relative;
 }
 
-/* Стили для футера */
 .footer {
     background-color: #000000;
     color: #fff;
     text-align: center;
     padding: 20px 0;
+}
+
+.footer a {
+    color: #5c1212;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer a:hover {
+    color: #fff;
 }
 
 .footer-container {
@@ -923,8 +928,15 @@ h2 {
 }
 
 .footer-column a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
     display: block;
     padding: 5px 0;
+}
+
+.footer-column a:hover {
+    color: #fff;
 }
 
 /* Стили для иконок соцсетей */
@@ -953,11 +965,11 @@ h2 {
     }
 
     .masters-container {
-        justify-content: flex-start;
+        justify-content: flex-start; /* Выравниваем карточки по левому краю */
     }
 
     .master-wrapper {
-        width: calc(33.33% - 30px);
+        width: calc(33.33% - 30px); /* Три карточки в ряд */
     }
 
     .service-card {
@@ -965,33 +977,33 @@ h2 {
     }
 }
 
-/* Для средних экранов (ширина от 768px до 1199px) */
+/* Для средних экранов (ширина от 768px до 1200px) */
 @media (min-width: 768px) and (max-width: 1199px) {
     body {
-        padding: 0 5rem;
+        padding: 0 5rem; /* Уменьшаем отступ */
     }
 
     .masters-container {
-        justify-content: center;
+        justify-content: center; /* Центрируем карточки */
     }
 
     .master-wrapper {
-        width: calc(50% - 30px);
+        width: calc(50% - 30px); /* Две карточки в ряд */
     }
 
     .service-card {
-        flex: 0 0 80%;
+        flex: 0 0 80%; /* Увеличиваем размер карточки */
     }
 }
 
 /* Для маленьких экранов (ширина до 767px) */
 @media (max-width: 767px) {
     body {
-        padding: 0 1rem;
+        padding: 0 1rem; /* Минимальный отступ */
     }
 
     .header-content {
-        flex-direction: column;
+        flex-direction: column; /* Лого и навигация друг под другом */
         align-items: center;
     }
 
@@ -1009,7 +1021,7 @@ h2 {
     .sterility-content,
     .conditions-content {
         flex-direction: column;
-        align-items: center;
+        align-items: center; /* Центрируем элементы */
     }
 
     .text-container {
@@ -1017,8 +1029,8 @@ h2 {
     }
 
     .text-container h2 {
-        font-size: 2.5em;
-        text-align: center;
+        font-size: 2.5em; /* Уменьшаем размер заголовка */
+        text-align: center; /* Центрируем заголовок */
         margin-top: 20px;
     }
 
@@ -1031,22 +1043,22 @@ h2 {
     .sterility-content .image-container,
     .conditions-content .image-container,
     .about-content .image-container {
-        order: unset;
+        order: unset; /* Убираем order для корректного отображения */
     }
 
     .masters h2 {
-        font-size: 2.5em;
+        font-size: 2.5em; /* Уменьшаем размер заголовка */
     }
 
     .masters-container {
-        flex-direction: column;
+        flex-direction: column; /* Карточки друг под другом */
         align-items: center;
     }
 
     .master-wrapper {
         width: 100%;
         margin-bottom: 20px;
-        flex-direction: column;
+        flex-direction: column; /* Внутренние элементы тоже друг под другом */
     }
 
     .master {
@@ -1061,11 +1073,11 @@ h2 {
     }
 
     .master-info h3 {
-        font-size: 2em;
+        font-size: 2em; /* Уменьшаем размер заголовка */
     }
 
     .service-card {
-        flex: 0 0 100%;
+        flex: 0 0 100%; /* Одна карточка на экране */
     }
 
     .footer-container {
