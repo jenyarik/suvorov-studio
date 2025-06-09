@@ -1,32 +1,42 @@
-/* общие стили */
-/* Глобальные стили для заголовков, использующие Jost Italic 700 */
+/* Общие стили */
+/* Глобальные стили для заголовков */
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display SC', sans-serif; /* Используем Jost */
-    font-weight: 700;                 /* Задаем жирность 700 */
-  }
- 
+    font-family: 'Playfair Display SC', sans-serif;
+    font-weight: 700;
+}
 
 body {
     font-family: sans-serif;
     margin: 0;
-    padding: 0 20rem; /* добавлены отступы слева и справа для эстетики */
     color: #333;
     background-color: #000;
     background-size: cover;
 }
+
+/* Общие стили ссылок */
+a {
+    color: #5c1212;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #fff;
+}
+
 /* Стили шапки */
 header {
     background-color: #000000;
     color: #fff;
     padding: 10px 0;
-    /* Фиксируем header */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 100; /*  Важно, чтобы перекрывать другие элементы */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Небольшая тень для визуального эффекта */
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
+
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -40,34 +50,34 @@ header {
     height: auto;
 }
 
-/* Стили навигации*/
+/* Стили навигации */
 header nav a {
-    color: #fff;
-    text-decoration: none;
+    display: inline-block; /*Чтобы ::after занимал всю ширину*/
     margin: 0 15px;
-    font-size: 1.2em; /* Увеличиваем размер шрифта */
+    font-size: 1.2em;
     position: relative;
-    transition: color 0.3s ease, transform 0.2s ease;
 }
-header nav a:hover {
-    color: #5c1212; /* Изменение цвета при наведении */
-    transform: translateY(-3px); /* Поднимаем ссылку немного вверх */
-}
+
 header nav a::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -2px; /* Положение подчеркивания */
+    bottom: -2px;
     width: 100%;
-    height: 2px; /* Толщина подчеркивания */
-    background-color: #5c1212; /* Цвет подчеркивания */
-    transform: scaleX(0);  /* Подчеркивание невидимо по умолчанию */
-    transform-origin: right; /* Анимация начинается справа */
+    height: 2px;
+    background-color: #5c1212;
+    transform: scaleX(0);
+    transform-origin: right;
     transition: transform 0.3s ease;
 }
+
 header nav a:hover::after {
-    transform: scaleX(1);  /* Показываем подчеркивание при наведении */
-    transform-origin: left; /* Анимация заканчивается слева */
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+header nav a:hover {
+    transform: translateY(-3px);
 }
 
 /* Стили для баннера */
@@ -75,14 +85,15 @@ header nav a:hover::after {
     position: relative;
     text-align: center;
     color: white;
-    margin: 0; /* Убираем отступы сверху и снизу */
-    padding: 0; /* Убираем внутренние отступы */
-    box-shadow: none; /* Убираем тень */
-    transition: none; /* Убираем transition */
+    margin: 0;
+    padding: 0;
+    transition: none;
 }
+
 .banner:hover {
-    transform: none; /* Отменяем любые трансформации при наведении */
+    transform: none;
 }
+
 .banner img {
     width: 100%;
     height: auto;
@@ -91,28 +102,27 @@ header nav a:hover::after {
 
 /* Стили для кнопки записи */
 .button {
-    display: inline-flex; /* Используем flex для выравнивания элементов */
-    align-items: center; /* Выравнивание элементов по вертикали */
-    justify-content: center; /* Выравнивание текста по центру */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     padding: 20px 27px;
-    background-color: #5c1212; /* Темно-красный цвет кнопки */
-    color: #fff; /* Цвет текста */
-    text-decoration: none;
+    background-color: #5c1212;
+    color: #fff;
     text-transform: uppercase;
     font-size: 0.9em;
     font-weight: bold;
     letter-spacing: 1px;
     border-radius: 20px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
     position: relative;
     overflow: hidden;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .button:hover {
-    background-color: #490c0c; /* Более светлый оттенок при наведении */
-    transform: scale(1.05); /* Небольшое увеличение при наведении */
+    background-color: #490c0c;
+    transform: scale(1.05);
 }
 
 .button .arrow {
@@ -132,13 +142,12 @@ header nav a:hover::after {
     right: 5px;
 }
 
-/* Добавьте отступ сверху или снизу для кнопки, если это необходимо */
 .about-content .text-container button {
-    margin-top: 20px;        /* Пример отступа сверху */
+    margin-top: 20px;
 }
 
 
-/* === Стили для чат-бота - отдельная зона, не конфликтует === */
+/* === Стили для чат-бота === */
 .chatbot-toggle {
     position: fixed;
     bottom: 20px;
@@ -155,7 +164,7 @@ header nav a:hover::after {
     cursor: pointer;
     z-index: 9999;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.3s ease; /*Добавил transition для background-color*/
 }
 
 .chatbot-toggle:hover {
@@ -268,99 +277,97 @@ header nav a:hover::after {
 }
 
 
-
-
 /* Общие стили для разделов */
 section {
     margin-top: 10px;
     margin-bottom: 15px;
-    padding: 50px; /* Уменьшаем общий отступ */
+    padding: 50px;
     background-color: #fff;
     overflow: hidden;
-  }
-  
-  
-  .about-us{
+}
+
+.about-us {
     margin-bottom: 0;
     margin-top: 0;
-  }
-  /* Стили для контента с расположением текст/изображение */
-  .about-content,
-  .sterility-content,
-  .conditions-content {
+}
+
+/* Стили для контента с расположением текст/изображение */
+.about-content,
+.sterility-content,
+.conditions-content {
     display: flex;
-    align-items: flex-start; /* Выравниваем элементы по верхнему краю */
+    align-items: flex-start;
     gap: 30px;
     flex-direction: row;
     margin-top: 0px;
     margin-bottom: 0px;
-  }
-  
-  /* Стили для текста */
-  .text-container {
+}
+
+/* Стили для текста */
+.text-container {
     flex: 1;
     font-size: 1rem;
     line-height: 1.6;
     color: #444;
     margin-top: 0;
-  }
-  
-  .text-container h2 {
+}
+
+.text-container h2 {
     margin-top: 70px;
-    font-size: 4.7em; /* Увеличиваем размер заголовка */
+    font-size: 4.7em;
     color: #333;
     text-transform: none;
     letter-spacing: 0.5px;
     text-align: left;
-  }
+}
 
-  .text-container ul {
+.text-container ul {
     list-style-type: disc;
     margin-left: 20px;
     margin-bottom: 10px;
-  }
-  
-  .text-container li {
+}
+
+.text-container li {
     margin-bottom: 10px;
     color: #000;
-  }
-  
-  /* Стили для изображений */
-  .image-container {
+}
+
+/* Стили для изображений */
+.image-container {
     width: 80%;
     max-width: 600px;
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
     margin-bottom: 6rem;
     margin-top: 7rem;
-  }
-  
-  .image-container img {
+}
+
+.image-container img {
     width: 100%;
     height: auto;
     display: block;
     object-fit: cover;
-  }
-  
-  /* Классы для изменения порядка (текст слева/справа) */
-  .sterility-content .image-container {
+}
+
+/* Классы для изменения порядка (текст слева/справа) */
+.sterility-content .image-container {
     order: -1;
-  }
+}
 
-  .conditions-content .image-container {
+.conditions-content .image-container {
     order: 1;
-  }
-  
-  .about-content .image-container {
-      order: -1;
-  }
-  
-  .about-us h2{
-   text-align: start;
-  }
+}
+
+.about-content .image-container {
+    order: -1;
+}
+
+.about-us h2 {
+    text-align: start;
+}
 
 
-/* Общие стили мастера (без изменений) */
+/* Общие стили мастера */
 .masters {
     padding: 0px;
     text-align: center;
@@ -369,8 +376,9 @@ section {
     margin-bottom: 0px;
     margin-top: 0px;
 }
-.masters h2{
-    text-align:center;
+
+.masters h2 {
+    text-align: center;
     margin-top: 0%;
     margin-bottom: 0%;
     background-color: #dadada;
@@ -381,36 +389,38 @@ section {
 
 
 .masters-container {
-    display: flex; /* Используем flexbox для расположения мастеров */
-    flex-wrap: wrap; /* Разрешаем перенос на новую строку, если не помещаются */
-    gap: 0px; /* Добавим отступы между карточками мастеров */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
     margin-bottom: 0px;
     margin-top: 0px;
+    justify-content: center; /* Добавлено для центрирования карточек */
 }
 
 /* Стили для карточки мастера (.master-wrapper) */
 .master-wrapper {
-    width: calc(100% - 60px); /* Занимает половину ширины контейнера (с учетом gap) */
-    display: flex; /* Делаем элементы внутри flex-контейнером */
-    margin-bottom: 0px;
+    width: calc(50% - 30px); /* Две карточки в ряд, с учетом gap */
+    display: flex;
+    margin-bottom: 30px; /* Отступ между рядами карточек */
     margin-top: 0px;
-    overflow: hidden; /* Скроем содержимое, выходящее за границы */
+    overflow: hidden;
 }
+
 /* Стили для блока с изображением и кнопкой (.master) */
 .master {
-    flex-basis: 25% ; /* Занимает все доступное пространство по ширине */
-    padding: 80px;
-    text-align: center; /* Выравниваем текст по левому краю */
+    flex-basis: 25%;
+    padding: 20px; /* Уменьшаем отступы */
+    text-align: center;
     background-color: #ffffff;
-    border-right: 3px solid #eeeeee; /* Отделим изображение и кнопку от информации о мастере */
+    border-right: 3px solid #eeeeee;
 }
 
 .master img {
-    width: 80%; /* Изображение занимает всю ширину блока */
-    height: auto; /* Автоматическая высота, сохраняем пропорции */
+    width: 80%;
+    height: auto;
     margin-bottom: 15px;
     border-radius: 4px;
-    object-fit: cover; /* Если нужно обрезать изображение */
+    object-fit: cover;
     padding: 3rex;
 }
 
@@ -420,14 +430,15 @@ section {
 }
 
 .master p {
-    margin-bottom: 8px; /* Добавим отступ между абзацами */
+    margin-bottom: 8px;
 }
+
 /* Стили для блока с информацией о мастере (.master-info) */
 .master-info {
-    flex: 1; /* Занимает все доступное пространство по ширине */
-    padding: 49px;
-    text-align: left; /* Выравниваем текст по левому краю */
-    font-size: 1em; /* Увеличиваем размер шрифта */
+    flex: 1;
+    padding: 20px; /* Уменьшаем отступы */
+    text-align: left;
+    font-size: 1em;
     margin-bottom: 0px;
     background-color: #222;
 }
@@ -439,28 +450,8 @@ section {
 }
 
 .master-info p {
-    margin-bottom: 12px; /* Добавим отступы для лучшей читаемости */
+    margin-bottom: 12px;
     color: #ccc;
-}
-
-/* Опционально:  Добавим стили для мобильных устройств (медиа-запросы) */
-@media (max-width: 768px) {
-    .master-wrapper {
-        flex-direction: column; /* Меняем направление на вертикальное для мобильных */
-    }
-
-    .master {
-        border-right: none;
-        border-bottom: 1px solid #ccc; /* Добавляем разделитель между блоками */
-    }
-
-    .master-info {
-        margin-top: 15px; /* Добавим отступ сверху для лучшей визуализации */
-    }
-
-    .master-wrapper {
-        width: 100%; /* Занимает всю ширину на мобильных */
-    }
 }
 
 .show-works-button {
@@ -476,7 +467,7 @@ section {
     cursor: pointer;
     border-radius: 20px;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    margin:auto;
+    margin: auto;
 }
 
 .show-works-button:hover {
@@ -486,51 +477,39 @@ section {
 
 /* Общие стили для модального окна */
 .modal {
-    display: none; /* Скрываем модальное окно по умолчанию */
-    position: fixed; /* Фиксированное позиционирование, чтобы окно не смещалось при прокрутке */
-    z-index: 1000; /* Убеждаемся, что окно находится поверх всего остального контента */
+    display: none;
+    position: fixed;
+    z-index: 1000;
     left: 0;
     top: 0;
-    width: 100%; /* Ширина на всю ширину экрана */
-    height: 100%; /* Высота на всю высоту экрана */
-    overflow: auto; /* Разрешаем прокрутку, если контент не помещается (но мы постараемся этого избежать) */
-    background-color: rgba(0, 0, 0, 0.7); /* Полупрозрачный фон */
-    /*padding: 20px;*/ /* Убираем отступы для лучшего контроля размера */
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 .modal.show {
-    display: flex; /* Меняем на flex для центрирования */
+    display: flex;
     opacity: 1;
 }
 
 /* Стили для содержимого модального окна */
 .modal-content {
     background-color: #ffffff;
-    margin: 10% auto; /* Располагаем окно по центру, отступ сверху 10% */
-    padding: 10px; /* Уменьшаем отступы */
+    margin: 10% auto;
+    padding: 10px;
     border: 0.1px solid #888;
-    width: 90%; /* Ширина окна - 90% от ширины экрана */
-    max-width: 800px; /* Максимальная ширина окна */
-    max-height: 80%; /* Максимальная высота окна - 80% от высоты экрана */
-    overflow: hidden; /* Убираем прокрутку для самого окна (если контент не помещается, будет внутри) */
+    width: 90%;
+    max-width: 800px;
+    max-height: 80%;
+    overflow: hidden;
     border-radius: 10px;
-    position: relative; /* Для правильного позиционирования кнопки закрытия */
-}
-@keyframes animatetop {
-    from {
-        top: -300px;
-        opacity: 0;
-    }
-
-    to {
-        top: 0;
-        opacity: 1;
-    }
+    position: relative;
 }
 
 /* Стили для кнопки закрытия */
 .close {
-    position: absolute; /* Позиционируем кнопку относительно .modal-content */
+    position: absolute;
     top: 10px;
     right: 10px;
     color: #aaa;
@@ -545,7 +524,8 @@ section {
     text-decoration: none;
     cursor: pointer;
 }
-/* Стили для карусели (можно настроить по своему вкусу) */
+
+/* Стили для карусели */
 .carousel {
     overflow: hidden;
     position: relative;
@@ -554,7 +534,7 @@ section {
 /* Стили для заголовка в модальном окне */
 h2 {
     text-align: center;
-    margin-bottom: 10px; /* Добавляем немного отступа снизу */
+    margin-bottom: 10px;
 }
 
 /* Стили для карусели */
@@ -562,7 +542,7 @@ h2 {
     display: flex;
     transition: transform 0.5s ease-in-out;
     width: 100%;
-    height: 100%; /* Занимает всю высоту контейнера */
+    height: 100%;
 }
 
 .carousel-slide {
@@ -571,17 +551,16 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%; /* Слайды должны занимать всю высоту контейнера */
+    height: 100%;
 }
 
 .carousel-slide img {
-    max-width: 80%; /* Изображение занимает всю ширину слайда */
-    object-fit: contain; /* Сохраняет пропорции, добавляя поля, если нужно */
+    max-width: 80%;
+    object-fit: contain;
 }
+
 .carousel-prev,
 .carousel-next {
-    /* Ваши существующие стили для кнопок, которые ты уже используешь */
-    /* Например: */
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -591,7 +570,7 @@ h2 {
     padding: 20px;
     font-size: 20px;
     cursor: pointer;
-    z-index: 10; /* Убедимся, что кнопки поверх изображений */
+    z-index: 10;
     border-radius: 50%;
 }
 
@@ -606,7 +585,7 @@ h2 {
 /* Добавим стили для стрелок */
 .carousel-prev::before,
 .carousel-next::before {
-    font-family: Arial, sans-serif; /* Или любой шрифт, который поддерживает стрелки */
+    font-family: Arial, sans-serif;
     font-size: 24px;
     position: absolute;
     top: 50%;
@@ -623,30 +602,31 @@ h2 {
 }
 
 .carousel-info {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-
 /* Общие стили для раздела сертификатов */
-.master-certificat{
+.master-certificat {
     margin-bottom: 50px;
     padding: 20px;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
 }
+
 /* Заголовок раздела */
 .master-certificat .section-title {
     margin-bottom: 30px;
     text-align: left;
 }
+
 .master-certificat .section-title h2 {
     font-size: 2.8em;
     color: #222;
@@ -654,6 +634,7 @@ h2 {
     letter-spacing: 3px;
     margin-bottom: 15px;
 }
+
 .master-certificat .section-title p,
 .master-certificat .studio-info p,
 .master-certificat .studio-info ul,
@@ -663,67 +644,79 @@ h2 {
     line-height: 1.6;
     color: #555;
 }
+
 /* Общий контейнер для информации о студии и таблицы */
-.master-certificat .content-wrapper{
+.master-certificat .content-wrapper {
     display: flex;
     gap: 50px;
 }
+
 /* Информация о студии */
-.master-certificat .studio-info{
+.master-certificat .studio-info {
     width: 40%;
-        text-align: left; /* Добавлено выравнивание по левому краю */
+    text-align: left;
 }
+
 .master-certificat .studio-info h3,
 .master-certificat .master-certificates-table h3,
-.master-certificat .license-section h3{
+.master-certificat .license-section h3 {
     font-size: 1.8em;
     color: #333;
     margin-bottom: 15px;
     text-transform: uppercase;
 }
+
 .master-certificat .studio-info ul {
     list-style-type: disc;
     margin-left: 30px;
     margin-bottom: 15px;
 }
+
 /* Таблица с сертификатами мастеров */
-.master-certificat .master-certificates-table{
+.master-certificat .master-certificates-table {
     width: 100%;
 }
-.master-certificat .master-certificates-table table{
+
+.master-certificat .master-certificates-table table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
 }
+
 .master-certificat .master-certificates-table th,
-.master-certificat .master-certificates-table td{
+.master-certificat .master-certificates-table td {
     padding: 12px 15px;
     text-align: left;
     border-bottom: 1px solid #ddd;
 }
-.master-certificat .master-certificates-table th{
+
+.master-certificat .master-certificates-table th {
     background-color: #eee;
     font-weight: bold;
 }
-.master-certificat .master-certificates-table td a{
-    color: #5c1212;
-    text-decoration: none;
+
+.master-certificat .master-certificates-table td a {
+    /* Используем общие стили для ссылок a */
 }
-.master-certificat .master-certificates-table td a:hover{
+
+.master-certificat .master-certificates-table td a:hover {
     text-decoration: underline;
 }
+
 /* Лицензия студии (под таблицей) */
-.master-certificat .license-section{
+.master-certificat .license-section {
     margin-top: 40px;
     text-align: center;
 }
-.master-certificat .license-section h3{
+
+.master-certificat .license-section h3 {
     font-size: 1.8em;
     color: #333;
     margin-bottom: 15px;
     text-transform: uppercase;
 }
-.master-certificat .license-section a{
+
+.master-certificat .license-section a {
     color: #fff;
     background-color: #5c1212;
     padding: 10px 20px;
@@ -733,40 +726,10 @@ h2 {
     margin-top: 15px;
     transition: background-color 0.3s ease;
 }
-.master-certificat .license-section a:hover{
+
+.master-certificat .license-section a:hover {
     background-color: #490c0c;
 }
-/* Адаптивность (для мобильных устройств) */
-@media (max-width: 768px) {
-    .master-certificat{
-        padding: 30px;
-        margin-bottom: 40px;
-    }
-    .master-certificat .section-title h2 {
-        font-size: 2.2em;
-        text-align: center;
-    }
-    .master-certificat .content-wrapper{
-        flex-direction: column;
-    }
-    .master-certificat .studio-info,
-    .master-certificat .master-certificates-table{
-        width: 100%;
-    }
-    .master-certificat .master-certificates-table table{
-        display: block;
-        overflow-x: auto;
-    }
-    .master-certificat .master-certificates-table th,
-    .master-certificat .master-certificates-table td{
-        white-space: nowrap;
-    }
-    .master-certificat .license-section{
-        text-align: center;
-    }
-}
-
-
 
 /* Стили для услуг */
 .services {
@@ -774,6 +737,7 @@ h2 {
     background-color: #b4b4b4;
     position: relative;
 }
+
 .services h2 {
     text-align: center;
     margin-bottom: 50px;
@@ -782,17 +746,19 @@ h2 {
     text-transform: uppercase;
     letter-spacing: 1px;
 }
+
 .service-container {
     display: flex;
-    gap: 20px; /* Расстояние между карточками */
-    overflow-x: hidden; /* Отключаем горизонтальный скролл */
+    gap: 20px;
+    overflow-x: auto;
     padding: 10px;
+    scroll-snap-type: x mandatory;
 }
 
 .service-card {
-    flex: 1 1 calc(20% - 16px); /* 100% / 5 = 20%, минус учет gap */
+    flex: 0 0 80%;
     box-sizing: border-box;
-    min-width: 200px; /* Минимальная ширина для маленьких экранов */
+    min-width: 200px;
     background-color: #fff;
     border-radius: 12px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
@@ -801,39 +767,45 @@ h2 {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    scroll-snap-align: start;
 }
+
 .service-card p {
     margin-bottom: 0;
     padding: 15px;
     flex-grow: 1;
 }
+
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
+
 .service-card img {
     width: 100%;
-    height: auto; /* Сохраняем пропорции */
-    aspect-ratio: 4 / 3; /* Например, фиксируем соотношение сторон (можно убрать, если не нужно) */
+    height: auto;
+    aspect-ratio: 4 / 3;
     object-fit: cover;
     border-radius: 12px 12px 0 0;
     flex-shrink: 0;
 }
-    .service-header {
-        display: block;
-        padding-top: 0.7em;
-        padding-right: 1em;
-        padding-bottom: 0; /* Отступ снизу убран */
-        padding-left: 1em;
-        border-bottom: 0px solid #e2e8f0;
-        font-size: 1.3em;
-        cursor: pointer;
-        position: relative;
-        user-select: none;
-        color: #333;
-        font-weight: 700;
-        flex-shrink: 0;
-    }
+
+.service-header {
+    display: block;
+    padding-top: 0.7em;
+    padding-right: 1em;
+    padding-bottom: 0;
+    padding-left: 1em;
+    border-bottom: 0px solid #e2e8f0;
+    font-size: 1.3em;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    color: #333;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
 .service-header:before {
     content: "";
     position: absolute;
@@ -842,9 +814,11 @@ h2 {
     width: 1em;
     height: 1em;
 }
+
 .service-content p.full-description {
-    width:100%;
+    width: 100%;
 }
+
 .service-content {
     position: absolute;
     bottom: 100%;
@@ -854,7 +828,7 @@ h2 {
     padding: 10px;
     border-radius: 12px;
     box-shadow: 0 -6px 12px rgba(0, 0, 0, 0.1);
-    transform: translateY(0); /* Контент скрыт по умолчанию */
+    transform: translateY(0);
     transition: transform 0.5s ease-in-out;
     overflow-y: auto;
     max-height: 300px;
@@ -863,15 +837,18 @@ h2 {
     box-sizing: border-box;
     min-width: 230px;
 }
+
 .service-card.active .service-content {
-    transform: translateY(100%); /*  Контент показывается, только когда карточка активна */
+    transform: translateY(100%);
 }
+
 .service-content p.full-description {
-    width: 100%; /* Занимает всю ширину */
-    margin: 0;  /* Убираем стандартные margin параграфа */
-    padding: 0; /* Убираем стандартные padding параграфа */
-    text-align: left; /* Выравниваем текст по левому краю */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: left;
 }
+
 .price {
     font-size: 1.4em;
     font-weight: bold;
@@ -881,21 +858,15 @@ h2 {
     padding: 0.7em 1em;
     border-top: 1px solid #e2e8f0;
     flex-shrink: 0;
-    position: relative; /* Важно для правильного отображения! */
+    position: relative;
 }
+
+/* Стили для футера */
 .footer {
     background-color: #000000;
     color: #fff;
     text-align: center;
     padding: 20px 0;
-}
-.footer a {
-    color: #5c1212; /* Изменение цвета ссылки */
-    text-decoration: none; /* Убираем подчеркивание по умолчанию */
-    transition: color 0.3s ease; /* Плавный переход цвета */
-}
-.footer a:hover {
-    color: #fff; /* Изменение цвета при наведении */
 }
 
 .footer-container {
@@ -952,36 +923,151 @@ h2 {
 }
 
 .footer-column a {
-    color: #ccc;
-    text-decoration: none;
-    transition: color 0.3s ease;
     display: block;
     padding: 5px 0;
 }
 
-.footer-column a:hover {
-    color: #fff;
-}
-
 /* Стили для иконок соцсетей */
 .social-icons ul {
-    display: flex; /* Размещаем иконки в ряд */
-    justify-content: flex-start; /* Выравниваем иконки по левому краю */
+    display: flex;
+    justify-content: flex-start;
 }
 
 .social-icons li {
-    margin-right: 10px; /* Отступ между иконками */
-    margin-bottom: 0; /* Убираем отступ снизу */
+    margin-right: 10px;
+    margin-bottom: 0;
 }
 
 .social-icons img {
-    width: 30px; /* Размер иконок */
+    width: 30px;
     height: auto;
     display: block;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
+/* === Медиа-запросы === */
+
+/* Для больших экранов (ширина больше 1200px) */
+@media (min-width: 1200px) {
+    body {
+        padding: 0 20rem; /* Возвращаем изначальный отступ */
+    }
+
+    .masters-container {
+        justify-content: flex-start;
+    }
+
+    .master-wrapper {
+        width: calc(33.33% - 30px);
+    }
+
+    .service-card {
+        flex: 0 0 calc(20% - 16px); /* 5 карточек в ряд */
+    }
+}
+
+/* Для средних экранов (ширина от 768px до 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+    body {
+        padding: 0 5rem;
+    }
+
+    .masters-container {
+        justify-content: center;
+    }
+
+    .master-wrapper {
+        width: calc(50% - 30px);
+    }
+
+    .service-card {
+        flex: 0 0 80%;
+    }
+}
+
+/* Для маленьких экранов (ширина до 767px) */
+@media (max-width: 767px) {
+    body {
+        padding: 0 1rem;
+    }
+
+    .header-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header nav {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    header nav a {
+        margin: 0 10px;
+        font-size: 1em;
+    }
+
+    .about-content,
+    .sterility-content,
+    .conditions-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .text-container {
+        text-align: center;
+    }
+
+    .text-container h2 {
+        font-size: 2.5em;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .image-container {
+        width: 100%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .sterility-content .image-container,
+    .conditions-content .image-container,
+    .about-content .image-container {
+        order: unset;
+    }
+
+    .masters h2 {
+        font-size: 2.5em;
+    }
+
+    .masters-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .master-wrapper {
+        width: 100%;
+        margin-bottom: 20px;
+        flex-direction: column;
+    }
+
+    .master {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 20px;
+    }
+
+    .master-info {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .master-info h3 {
+        font-size: 2em;
+    }
+
+    .service-card {
+        flex: 0 0 100%;
+    }
+
     .footer-container {
         flex-direction: column;
         align-items: center;
@@ -990,7 +1076,7 @@ h2 {
     .footer-logo {
         width: 100%;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
 
     .footer-links {
@@ -1000,11 +1086,10 @@ h2 {
 
     .footer-column {
         width: 100%;
-        text-align: left;
-        margin-bottom: 30px;
+        text-align: center;
+        margin-bottom: 20px;
     }
 
-     /* Выравниваем иконки по центру на мобильных */
     .social-icons ul {
         justify-content: center;
     }
