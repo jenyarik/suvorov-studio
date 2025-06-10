@@ -236,4 +236,4 @@ $(document).ready(function() {  // **1. Удалите эту строку**
         $("#popUp").css("margin-left", "-425px");
         $("#darkBack").fadeOut(); // Скрываем затемненный фон
     });
-
+    });
