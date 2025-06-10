@@ -79,6 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
         console.error('Не удалось загрузить элементы чат-бота');
     }
+
     // === Управление карточками услуг ===
     const serviceCards = document.querySelectorAll('.service-card');
 
@@ -103,10 +104,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalMasterName = document.getElementById('modal-master-name');
     const modalWorksCarouselBody = document.getElementById('modal-works-carousel-body');
     const closeBtn = document.querySelector('.close');
-    const carouselPrevBtn = modal ? modal.querySelector('.carousel-prev') : null;
-    const carouselNextBtn = modal ? modal.querySelector('.carousel-next') : null;
-    const carouselInfoCurrent = modal ? modal.querySelector('.carousel-info-current') : null;
-    const carouselInfoTotal = modal ? modal.querySelector('.carousel-info-total') : null;
+    const carouselPrevBtn = modal?.querySelector('.carousel-prev'); // Optional chaining
+    const carouselNextBtn = modal?.querySelector('.carousel-next'); // Optional chaining
+    const carouselInfoCurrent = modal?.querySelector('.carousel-info-current'); // Optional chaining
+    const carouselInfoTotal = modal?.querySelector('.carousel-info-total'); // Optional chaining
 
     let currentSlide = 0;
     let slides = [];
@@ -117,8 +118,21 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error('Не удалось загрузить элемент мастера');
             return;
         }
+
+        if (!modal) {
+            console.error('Не удалось загрузить модальное окно');
+            return;
+        }
+
         const masterName = masterElement.dataset.masterName;
-        const worksData = JSON.parse(masterElement.dataset.works);
+        let worksData;
+        try {
+            worksData = JSON.parse(masterElement.dataset.works);
+        } catch (e) {
+            console.error("Ошибка при парсинге JSON:", e);
+            alert("Ошибка: Некорректные данные о работах мастера.");
+            return;
+        }
 
         if (worksData && worksData.length) {
             modalMasterName.textContent = masterName;
@@ -155,8 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Функция для закрытия модального окна
     function closeModal() {
-        modal.classList.remove('show');
-        modal.style.display = 'none';
+        modal?.classList.remove('show'); // Optional chaining
+        modal?.style.display = 'none'; // Optional chaining
     }
 
     // Функция для отображения текущего слайда
@@ -187,36 +201,26 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Обработчик клика для открытия модального окна
-    if (mastersContainer) {
-        mastersContainer.addEventListener('click', function(event) {
-            const button = event.target.closest('.show-works-button');
-            if (button) {
-                const masterElement = button.closest('.master');
-                openModal(masterElement);
-            }
-        });
-    } else {
-        console.error('Не удалось загрузить контейнер мастеров');
-    }
+    mastersContainer?.addEventListener('click', function(event) { // Optional chaining
+        const masterElement = event.target.closest('.show-works-button')?.closest('.master'); // Optional chaining
+        if (masterElement) {
+            openModal(masterElement);
+        }
+    });
+
     // Обработчик клика для закрытия модального окна
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeModal);
-    } else {
-        console.error('Не удалось загрузить кнопку закрытия');
-    }
+    closeBtn?.addEventListener('click', closeModal); // Optional chaining
 
     // Закрытие модального окна при клике вне его
-    if (modal) {
-        window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                closeModal();
-            }
-        });
-    } else {
-        console.error('Не удалось загрузить модальное окно');
-    }
+    modal?.addEventListener('click', function(event) { // Optional chaining
+        if (event.target === modal) {
+            closeModal();
+        }
+    });
 });
-$(document).ready(function() {
+
+// == Код для открытия окна чата ==
+$(document).ready(function() {  // **1. Удалите эту строку**
 
     // Скрываем окно чата при загрузке страницы
     $("#popUp").css("margin-left", "-425px");
@@ -232,3 +236,4 @@ $(document).ready(function() {
         $("#popUp").css("margin-left", "-425px");
         $("#darkBack").fadeOut(); // Скрываем затемненный фон
     });
+
