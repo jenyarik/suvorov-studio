@@ -216,3 +216,19 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error('Не удалось загрузить модальное окно');
     }
 });
+$(document).ready(function() {
+
+    // Скрываем окно чата при загрузке страницы
+    $("#popUp").css("margin-left", "-425px");
+
+    //  Обработчик открытия окна
+    $("#openFormButton").click(function() {
+        $("#popUp").css("margin-left", "0px");
+        $("#darkBack").fadeIn(); // Показываем затемненный фон
+    });
+
+    //  Обработчик закрытия окна
+    $("#close").click(function() {
+        $("#popUp").css("margin-left", "-425px");
+        $("#darkBack").fadeOut(); // Скрываем затемненный фон
+    });
